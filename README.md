@@ -1,6 +1,6 @@
 
 # Big Spans
-
+[![CodeFactor](https://www.codefactor.io/repository/github/stirlinglabs/bigspans.net/badge?s=eff9fc166f2e137f96ee77a5d51b8891904fdd92)](https://www.codefactor.io/repository/github/stirlinglabs/bigspans.net)
 <img alt="bridge by Simon Child from the Noun Project" src="media/noun_bridge_4720.svg" width="636" />
 
 **Spans for the whole memory range.**
