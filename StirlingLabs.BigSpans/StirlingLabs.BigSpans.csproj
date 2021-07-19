@@ -4,7 +4,6 @@
         <TargetFrameworks>net5.0;netstandard2.1;netstandard2.0</TargetFrameworks>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <Authors>Stirling Labs</Authors>
         <PackageOutputPath>../artifacts</PackageOutputPath>
         <LangVersion>9</LangVersion>
         <Nullable>enable</Nullable>
