@@ -1,7 +1,7 @@
 
 # Big Spans
 
-<img alt="bridge by Simon Child from the Noun Project" src="media/noun_bridge_4720.svg" width="420" />
+<img alt="bridge by Simon Child from the Noun Project" src="media/noun_bridge_4720.svg" width="636" />
 
 **Spans for the whole memory range.**
 
@@ -22,4 +22,3 @@ A host of useful extensions are provided.
  * A pinning `IEnumerable<T>` implementation.
  * Unmanaged memory allocation exposed as BigSpans.
  * Automatic slicing into regular Spans.
- 
