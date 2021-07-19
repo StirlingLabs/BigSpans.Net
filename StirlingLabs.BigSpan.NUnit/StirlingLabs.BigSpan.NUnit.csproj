@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netstandard2.0</TargetFramework>
+        <LangVersion>9</LangVersion>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\StirlingLabs.BigSpans\StirlingLabs.BigSpans.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Fody" Version="6.5.2" PrivateAssets="all" />
+        <PackageReference Include="InlineIL.Fody" Version="1.7.1" PrivateAssets="all" />
+        <PackageReference Include="NUnit" Version="3.13.2" />
+        <PackageReference Include="JetBrains.Annotations" Version="2020.3.0" PrivateAssets="all" />
+    </ItemGroup>
+
+</Project>

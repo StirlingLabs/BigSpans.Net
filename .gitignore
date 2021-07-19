@@ -1,0 +1,7 @@
+.vs
+*.user
+*.suo
+bin
+obj
+/artifacts
+.DS_Store

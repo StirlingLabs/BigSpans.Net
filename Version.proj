@@ -1,0 +1,15 @@
+<Project>
+    <PropertyGroup>
+        <Authors>The Stirling Labs Team</Authors>
+        <Owners>Stirling Labs</Owners>
+        <Company>Stirling Labs</Company>
+        <RepositoryType>git</RepositoryType>
+        <RepositoryUrl>https://github.com/StirlingLabs/BigSpans.Net.git</RepositoryUrl>
+        <PackageProjectUrl>https://github.com/StirlingLabs/BigSpans.Net</PackageProjectUrl>
+        <GitDefaultBranch>main</GitDefaultBranch>
+        <GitCommitsIgnoreMerges>true</GitCommitsIgnoreMerges>
+    </PropertyGroup>
+    <ImportGroup>
+        <Import Project="StirlingLabs.Version/Version.proj" />
+    </ImportGroup>
+</Project>

@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net5.0</TargetFramework>
+        <IsPackable>false</IsPackable>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+        <Authors>Stirling Labs</Authors>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="AutoBogus" Version="2.13.0" />
+        <PackageReference Include="Iced" Version="1.13.0" />
+        <PackageReference Include="NUnit" Version="3.13.2" />
+        <PackageReference Include="NUnit3TestAdapter" Version="4.0.0" />
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.10.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\StirlingLabs.BigSpan.NUnit\StirlingLabs.BigSpan.NUnit.csproj" />
+        <ProjectReference Include="..\StirlingLabs.BigSpans\StirlingLabs.BigSpans.csproj" />
+    </ItemGroup>
+
+</Project>
