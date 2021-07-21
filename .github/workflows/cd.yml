@@ -23,7 +23,7 @@ jobs:
       - name: Push NuPkg
         run: dotnet nuget push artifacts/*.nupkg -k ${{github.token}} -s https://nuget.pkg.github.com/${{github.repository_owner}}/index.json -n 1
       - name: Save coverage to storage branch
-        uses: StirlingLabs/action-storage@v21.07.2
+        uses: StirlingLabs/BranchStorageAction@v21.07.3
         with:
           comment: |
             Coverage for ${{github.ref}}
