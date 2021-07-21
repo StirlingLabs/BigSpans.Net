@@ -252,6 +252,16 @@ namespace StirlingLabs.Utilities
         }
 
         /// <summary>
+        /// The number of items in the span.
+        /// </summary>
+        public ulong LongLength
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            [NonVersionable]
+            get => _length;
+        }
+
+        /// <summary>
         /// Returns true if Length is 0.
         /// </summary>
         public bool IsEmpty
