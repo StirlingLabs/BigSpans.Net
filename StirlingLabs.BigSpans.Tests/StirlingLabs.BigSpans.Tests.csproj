@@ -6,6 +6,12 @@
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
         <Authors>Stirling Labs</Authors>
         <Nullable>enable</Nullable>
+    
+        <CollectCoverage>true</CollectCoverage>
+        <CoverletOutputFormat>lcov</CoverletOutputFormat>
+        <CoverletOutput>../coverage/</CoverletOutput>
+        <DeterministicReport>true</DeterministicReport>
+        <DeterministicSourcePaths>true</DeterministicSourcePaths>
     </PropertyGroup>
 
     <ItemGroup>
