@@ -169,7 +169,6 @@ namespace StirlingLabs.Utilities
             where T : unmanaged
             => a.CompareMemory(b);
 
-
         /// <summary>
         /// Writes a structure of type T into a span of bytes.
         /// </summary>
@@ -183,7 +182,6 @@ namespace StirlingLabs.Utilities
             Unsafe.WriteUnaligned(ref destination.GetReference(), value);
             return true;
         }
-
 
         /// <summary>
         /// Writes a structure of type T into a span of bytes.

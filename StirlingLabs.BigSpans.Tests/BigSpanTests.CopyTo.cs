@@ -192,77 +192,69 @@ namespace StirlingLabs.BigSpans.Tests
         }
 
         [Test]
-        public static void FillWithRandomDataCoverage()
+        public static unsafe void FillWithRandomDataCoverage()
         {
             nuint bufferSize = 256;
 
             var allocated = false;
             IntPtr memBlock = default;
 
-            unsafe
+            try
             {
-                try
-                {
+                Assert.True(allocated = UnmanagedMemory.Allocate(bufferSize, out memBlock));
 
-                    Assert.True(allocated = UnmanagedMemory.Allocate(bufferSize, out memBlock));
+                var memoryFirst = (byte*)memBlock.ToPointer();
+                var spanFirst = new BigSpan<byte>(memoryFirst, bufferSize);
 
-                    var memoryFirst = (byte*)memBlock.ToPointer();
-                    var spanFirst = new BigSpan<byte>(memoryFirst, bufferSize);
+                spanFirst.AsSmallSlices(RandomNumberGenerator.Fill);
 
-                    spanFirst.AsSmallSlices(RandomNumberGenerator.Fill);
+                // take a sample and ensure all of the sampled bytes are non-zero
+                var nonZeroBytes = 0;
 
-                    // take a sample and ensure all of the sampled bytes are non-zero
-                    var nonZeroBytes = 0;
+                for (nuint i = 0; i < bufferSize; ++i)
+                    if (spanFirst[i] != 0)
+                        nonZeroBytes++;
 
-                    for (nuint i = 0; i < bufferSize; ++i)
-                        if (spanFirst[i] != 0)
-                            nonZeroBytes++;
-
-                    Assert.NotZero(nonZeroBytes);
-                }
-                finally
-                {
-                    if (allocated)
-                        UnmanagedMemory.Free(ref memBlock);
-                }
+                Assert.NotZero(nonZeroBytes);
+            }
+            finally
+            {
+                if (allocated)
+                    UnmanagedMemory.Free(ref memBlock);
             }
         }
 
         [Test]
-        public static void FillWithRandomNonZeroData()
+        public static unsafe void FillWithRandomNonZeroData()
         {
             nuint bufferSize = 256;
 
             var allocated = false;
             IntPtr memBlock = default;
 
-            unsafe
+            try
             {
-                try
-                {
+                Assert.True(allocated = UnmanagedMemory.Allocate(bufferSize, out memBlock));
 
-                    Assert.True(allocated = UnmanagedMemory.Allocate(bufferSize, out memBlock));
+                var memoryFirst = (byte*)memBlock.ToPointer();
+                var spanFirst = new BigSpan<byte>(memoryFirst, bufferSize);
 
-                    var memoryFirst = (byte*)memBlock.ToPointer();
-                    var spanFirst = new BigSpan<byte>(memoryFirst, bufferSize);
+                using var rng = RandomNumberGenerator.Create();
 
-                    using var rng = RandomNumberGenerator.Create();
-                    
-                    spanFirst.AsSmallSlices(rng.GetNonZeroBytes);
+                spanFirst.AsSmallSlices(rng.GetNonZeroBytes);
 
-                    for (nuint i = 0; i < bufferSize; ++i)
-                        Assert.NotZero(spanFirst[i]);
-                }
-                finally
-                {
-                    if (allocated)
-                        UnmanagedMemory.Free(ref memBlock);
-                }
+                for (nuint i = 0; i < bufferSize; ++i)
+                    Assert.NotZero(spanFirst[i]);
+            }
+            finally
+            {
+                if (allocated)
+                    UnmanagedMemory.Free(ref memBlock);
             }
         }
 
         [Theory]
-        public static void CopyToSmallSizeTest([Values(1uL, 64uL, 384uL, 1024uL)] ulong longBufferSize)
+        public static unsafe void CopyToSmallSizeTest([Values(1uL, 64uL, 384uL, 1024uL)] ulong longBufferSize)
         {
             var bufferSize = (nuint)longBufferSize;
 
@@ -271,47 +263,42 @@ namespace StirlingLabs.BigSpans.Tests
             IntPtr memBlockFirst = default;
             IntPtr memBlockSecond = default;
 
-            unsafe
+            try
             {
-                try
-                {
+                Assert.True(allocatedFirst = UnmanagedMemory.Allocate(bufferSize, out memBlockFirst));
+                Assert.True(allocatedSecond = UnmanagedMemory.Allocate(bufferSize, out memBlockSecond));
 
-                    Assert.True(allocatedFirst = UnmanagedMemory.Allocate(bufferSize, out memBlockFirst));
-                    Assert.True(allocatedSecond = UnmanagedMemory.Allocate(bufferSize, out memBlockSecond));
+                var memoryFirst = (byte*)memBlockFirst.ToPointer();
+                var spanFirst = new BigSpan<byte>(memoryFirst, bufferSize);
 
-                    var memoryFirst = (byte*)memBlockFirst.ToPointer();
-                    var spanFirst = new BigSpan<byte>(memoryFirst, bufferSize);
+                var memorySecond = (byte*)memBlockSecond.ToPointer();
+                var spanSecond = new BigSpan<byte>(memorySecond, bufferSize);
 
-                    var memorySecond = (byte*)memBlockSecond.ToPointer();
-                    var spanSecond = new BigSpan<byte>(memorySecond, bufferSize);
+                using var rng = RandomNumberGenerator.Create();
 
+                spanFirst.AsSmallSlices(rng.GetNonZeroBytes);
 
-                    using var rng = RandomNumberGenerator.Create();
-                    
-                    spanFirst.AsSmallSlices(rng.GetNonZeroBytes);
+                // take a sample and ensure all of the sampled bytes are non-zero
+                for (nuint i = 0; i < Math.Min(bufferSize - 1, 63); ++i)
+                    Assert.NotZero(spanFirst[i]);
+                Assert.NotZero(spanFirst[^1]);
 
-                    // take a sample and ensure all of the sampled bytes are non-zero
-                    for (nuint i = 0; i < Math.Min(bufferSize - 1, 63); ++i)
-                        Assert.NotZero(spanFirst[i]);
-                    Assert.NotZero(spanFirst[^1]);
+                spanFirst.CopyTo(spanSecond);
 
-                    spanFirst.CopyTo(spanSecond);
-
-                    Assert.Zero(spanFirst.CompareMemory(spanSecond));
-                }
-                finally
-                {
-                    if (allocatedFirst)
-                        UnmanagedMemory.Free(ref memBlockFirst);
-                    if (allocatedSecond)
-                        UnmanagedMemory.Free(ref memBlockSecond);
-                }
+                Assert.Zero(spanFirst.CompareMemory(spanSecond));
+            }
+            finally
+            {
+                if (allocatedFirst)
+                    UnmanagedMemory.Free(ref memBlockFirst);
+                if (allocatedSecond)
+                    UnmanagedMemory.Free(ref memBlockSecond);
             }
         }
 
         [Theory]
         [Explicit]
-        public static void CopyToLargeSizeTest([Values(uint.MaxValue / 32uL, 256uL + int.MaxValue, 256uL + uint.MaxValue)]
+        public static unsafe void CopyToLargeSizeTest([Values(uint.MaxValue / 32uL, 256uL + int.MaxValue, 256uL + uint.MaxValue)]
             ulong longBufferSize)
         {
             var bufferSize = (nuint)longBufferSize;
@@ -324,33 +311,30 @@ namespace StirlingLabs.BigSpans.Tests
             IntPtr memBlockFirst = default;
             IntPtr memBlockSecond = default;
 
-            unsafe
+            try
             {
-                try
-                {
-                    Assert.True(allocatedFirst = UnmanagedMemory.Allocate(bufferSize, out memBlockFirst));
-                    var memoryFirst = (byte*)memBlockFirst.ToPointer();
-                    Assert.NotZero((nint)memoryFirst);
-                    var spanFirst = new BigSpan<byte>(memoryFirst, bufferSize);
+                Assert.True(allocatedFirst = UnmanagedMemory.Allocate(bufferSize, out memBlockFirst));
+                var memoryFirst = (byte*)memBlockFirst.ToPointer();
+                Assert.NotZero((nint)memoryFirst);
+                var spanFirst = new BigSpan<byte>(memoryFirst, bufferSize);
 
-                    Assert.True(allocatedSecond = UnmanagedMemory.Allocate(bufferSize, out memBlockSecond));
-                    var memorySecond = (byte*)memBlockSecond.ToPointer();
-                    Assert.NotZero((nint)memorySecond);
-                    var spanSecond = new BigSpan<byte>(memorySecond, bufferSize);
+                Assert.True(allocatedSecond = UnmanagedMemory.Allocate(bufferSize, out memBlockSecond));
+                var memorySecond = (byte*)memBlockSecond.ToPointer();
+                Assert.NotZero((nint)memorySecond);
+                var spanSecond = new BigSpan<byte>(memorySecond, bufferSize);
 
-                    spanFirst.AsSmallSlices(RandomNumberGenerator.Fill);
+                spanFirst.AsSmallSlices(RandomNumberGenerator.Fill);
 
-                    spanFirst.CopyTo(spanSecond);
+                spanFirst.CopyTo(spanSecond);
 
-                    Assert.Zero(spanFirst.CompareMemory(spanSecond));
-                }
-                finally
-                {
-                    if (allocatedFirst)
-                        UnmanagedMemory.Free(ref memBlockFirst);
-                    if (allocatedSecond)
-                        UnmanagedMemory.Free(ref memBlockSecond);
-                }
+                Assert.Zero(spanFirst.CompareMemory(spanSecond));
+            }
+            finally
+            {
+                if (allocatedFirst)
+                    UnmanagedMemory.Free(ref memBlockFirst);
+                if (allocatedSecond)
+                    UnmanagedMemory.Free(ref memBlockSecond);
             }
         }
 

@@ -89,7 +89,6 @@ namespace StirlingLabs.BigSpans.Tests
             Assert.AreEqual(expected, actual);
         }
 
-
         [Test]
         public static void HoldsObjectReference()
         {
@@ -131,7 +130,6 @@ namespace StirlingLabs.BigSpans.Tests
                 GarbageCollectedNotifier.GarbageCollected -= OnGc;
             }
         }
-
 
 #if DEBUG
         [Ignore("Garbage collector will hold a reference to items expected to be collected under Debug mode.")]
@@ -193,7 +191,6 @@ namespace StirlingLabs.BigSpans.Tests
                 GarbageCollectedNotifier.GarbageCollected -= OnGc;
             }
         }
-
 
         [Test]
         public static unsafe void ImplicitSpanUpgradeTest2G()

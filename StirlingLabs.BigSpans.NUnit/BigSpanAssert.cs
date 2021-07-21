@@ -7,8 +7,6 @@ namespace StirlingLabs.Utilities.Assertions
     [PublicAPI]
     public static partial class BigSpanAssert
     {
-        #region Equals and ReferenceEquals
-
         /// <summary>
         /// DO NOT USE! Use CollectionAssert.AreEqual(...) instead.
         /// The Equals method throws an InvalidOperationException. This is done
@@ -31,7 +29,5 @@ namespace StirlingLabs.Utilities.Assertions
         [Obsolete("CollectionAssert.Equals should not be used. Use CollectionAssert.AreEqual instead.", true)]
         public new static void ReferenceEquals(object a, object b)
             => throw new InvalidOperationException("CollectionAssert.ReferenceEquals should not be used.");
-
-        #endregion
     }
 }

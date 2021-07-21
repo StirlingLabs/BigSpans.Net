@@ -8,8 +8,6 @@ namespace StirlingLabs.Utilities.Assertions
 {
     public static partial class BigSpanAssert
     {
-        #region AllItemsAreInstancesOfType
-
         /// <summary>
         /// Asserts that all items contained in collection are of the type specified by expectedType.
         /// </summary>
@@ -28,10 +26,6 @@ namespace StirlingLabs.Utilities.Assertions
         public static void AllItemsAreInstancesOfType<T>(BigSpan<T> collection, Type expectedType, string message, params object[] args)
             => collection.AsPinnedEnumerable(e => Assert.That(e, Is.All.InstanceOf(expectedType), message, args));
 
-        #endregion
-
-        #region AllItemsAreNotNull
-
         /// <summary>
         /// Asserts that all items contained in collection are not equal to null.
         /// </summary>
@@ -47,10 +41,6 @@ namespace StirlingLabs.Utilities.Assertions
         /// <param name="args">Arguments to be used in formatting the message</param>
         public static void AllItemsAreNotNull<T>(BigSpan<T> collection, string message, params object[] args)
             => collection.AsPinnedEnumerable(e => Assert.That(e, Is.All.Not.Null, message, args));
-
-        #endregion
-
-        #region AllItemsAreUnique
 
         /// <summary>
         /// Ensures that every object contained in collection exists within the collection
@@ -69,10 +59,6 @@ namespace StirlingLabs.Utilities.Assertions
         /// <param name="args">Arguments to be used in formatting the message</param>
         public static void AllItemsAreUnique<T>(BigSpan<T> collection, string message, params object[] args)
             => collection.AsPinnedEnumerable(e => Assert.That(e, Is.Unique, message, args));
-
-        #endregion
-
-        #region AreEqual
 
         /// <summary>
         /// Asserts that expected and actual are exactly equal.  The collections must have the same count,
@@ -120,10 +106,6 @@ namespace StirlingLabs.Utilities.Assertions
             => BigSpan.AsPinnedEnumerables<T, T>(expected, actual, (e, a)
                 => Assert.That(a, Is.EqualTo(e).Using(comparer), message, args));
 
-        #endregion
-
-        #region AreEquivalent
-
         /// <summary>
         /// Asserts that expected and actual are equivalent, containing the same objects but the match may be in any order.
         /// </summary>
@@ -142,10 +124,6 @@ namespace StirlingLabs.Utilities.Assertions
         public static void AreEquivalent<T>(BigSpan<T> expected, BigSpan<T> actual, string message, params object[] args)
             => BigSpan.AsPinnedEnumerables<T, T>(expected, actual, (e, a)
                 => Assert.That(a, Is.EquivalentTo(e), message, args));
-
-        #endregion
-
-        #region AreNotEqual
 
         /// <summary>
         /// Asserts that expected and actual are not exactly equal.
@@ -189,10 +167,6 @@ namespace StirlingLabs.Utilities.Assertions
             => BigSpan.AsPinnedEnumerables<T, T>(expected, actual, (e, a)
                 => Assert.That(a, Is.Not.EqualTo(e).Using(comparer), message, args));
 
-        #endregion
-
-        #region AreNotEquivalent
-
         /// <summary>
         /// Asserts that expected and actual are not equivalent.
         /// </summary>
@@ -212,10 +186,6 @@ namespace StirlingLabs.Utilities.Assertions
             => BigSpan.AsPinnedEnumerables<T, T>(expected, actual, (e, a)
                 => Assert.That(a, Is.Not.EquivalentTo(e), message, args));
 
-        #endregion
-
-        #region Contains
-
         /// <summary>
         /// Asserts that collection contains actual as an item.
         /// </summary>
@@ -234,10 +204,6 @@ namespace StirlingLabs.Utilities.Assertions
         public static void Contains<T>(BigSpan<T> collection, Object actual, string message, params object[] args)
             => collection.AsPinnedEnumerable(e => Assert.That(e, Has.Member(actual), message, args));
 
-        #endregion
-
-        #region DoesNotContain
-
         /// <summary>
         /// Asserts that collection does not contain actual as an item.
         /// </summary>
@@ -255,10 +221,6 @@ namespace StirlingLabs.Utilities.Assertions
         /// <param name="args">Arguments to be used in formatting the message</param>
         public static void DoesNotContain<T>(BigSpan<T> collection, Object actual, string message, params object[] args)
             => collection.AsPinnedEnumerable(e => Assert.That(e, Has.No.Member(actual), message, args));
-
-        #endregion
-
-        #region IsNotSubsetOf
 
         /// <summary>
         /// Asserts that the superset does not contain the subset
@@ -279,10 +241,6 @@ namespace StirlingLabs.Utilities.Assertions
             => BigSpan.AsPinnedEnumerables<T, T>(subset, superset, (sub, sup)
                 => Assert.That(sub, Is.Not.SubsetOf(sup), message, args));
 
-        #endregion
-
-        #region IsSubsetOf
-
         /// <summary>
         /// Asserts that the superset contains the subset.
         /// </summary>
@@ -301,11 +259,6 @@ namespace StirlingLabs.Utilities.Assertions
         public static void IsSubsetOf<T>(BigSpan<T> subset, BigSpan<T> superset, string message, params object[] args)
             => BigSpan.AsPinnedEnumerables<T, T>(subset, superset, (sub, sup)
                 => Assert.That(sub, Is.SubsetOf(sup), message, args));
-
-        #endregion
-
-
-        #region IsNotSupersetOf
 
         /// <summary>
         /// Asserts that the subset does not contain the superset
@@ -326,10 +279,6 @@ namespace StirlingLabs.Utilities.Assertions
             => BigSpan.AsPinnedEnumerables<T, T>(subset, superset, (sub, sup)
                 => Assert.That(sup, Is.Not.SupersetOf(sub), message, args));
 
-        #endregion
-
-        #region IsSupersetOf
-
         /// <summary>
         /// Asserts that the subset contains the superset.
         /// </summary>
@@ -349,11 +298,6 @@ namespace StirlingLabs.Utilities.Assertions
             => BigSpan.AsPinnedEnumerables<T, T>(subset, superset, (sub, sup)
                 => Assert.That(sup, Is.SupersetOf(sub), message, args));
 
-        #endregion
-
-
-        #region IsEmpty
-
         /// <summary>
         /// Assert that an array, list or other collection is empty
         /// </summary>
@@ -370,10 +314,6 @@ namespace StirlingLabs.Utilities.Assertions
         public static void IsEmpty<T>(BigSpan<T> collection)
             => IsEmpty(collection, string.Empty, null!);
 
-        #endregion
-
-        #region IsNotEmpty
-
         /// <summary>
         /// Assert that an array, list or other collection is empty
         /// </summary>
@@ -389,10 +329,6 @@ namespace StirlingLabs.Utilities.Assertions
         /// <param name="collection">An array, list or other collection implementing IEnumerable</param>
         public static void IsNotEmpty<T>(BigSpan<T> collection)
             => IsNotEmpty(collection, string.Empty, null!);
-
-        #endregion
-
-        #region IsOrdered
 
         /// <summary>
         /// Assert that an array, list or other collection is ordered
@@ -427,7 +363,5 @@ namespace StirlingLabs.Utilities.Assertions
         /// <param name="comparer">A custom comparer to perform the comparisons</param>
         public static void IsOrdered<T>(BigSpan<T> collection, IComparer comparer)
             => IsOrdered(collection, comparer, string.Empty, null!);
-
-        #endregion
     }
 }

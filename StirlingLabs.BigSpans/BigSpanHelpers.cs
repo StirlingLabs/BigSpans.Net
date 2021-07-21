@@ -71,7 +71,6 @@ namespace StirlingLabs.Utilities
         public static bool IsReferenceOrContainsReferences<T>()
             => RuntimeHelpers.IsReferenceOrContainsReferences<T>();
 
-
         [MethodImpl(MethodImplOptions.NoInlining)]
         private static bool IsReferenceOrContainsReferencesInternal(Type t)
         {
