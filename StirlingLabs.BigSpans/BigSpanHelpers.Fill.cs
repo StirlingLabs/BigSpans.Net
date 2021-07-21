@@ -1,6 +1,7 @@
 using System.Diagnostics;
 using System.Numerics;
 using System.Runtime.CompilerServices;
+
 #if !NETSTANDARD
 using System.Runtime.Intrinsics;
 
@@ -18,76 +19,54 @@ namespace StirlingLabs.Utilities
             // - T's size must not exceed the vector's size
             // - T's size must be a whole power of 2
 
-            if (BigSpanHelpers.IsReferenceOrContainsReferences<T>())
-                goto CannotVectorize;
-            if (!Vector.IsHardwareAccelerated)
-                goto CannotVectorize;
-            if (Unsafe.SizeOf<T>() > Vector<byte>.Count)
-                goto CannotVectorize;
-            if (!IsPow2(Unsafe.SizeOf<T>()))
+            var sizeOfT = Unsafe.SizeOf<T>();
+
+            if (IsReferenceOrContainsReferences<T>()
+                || !Vector.IsHardwareAccelerated
+                || sizeOfT > Vector<byte>.Count
+                || !IsPow2(sizeOfT))
                 goto CannotVectorize;
 
-            if (numElements >= (uint)(Vector<byte>.Count / Unsafe.SizeOf<T>()))
+            if (numElements >= (uint)(Vector<byte>.Count / sizeOfT))
             {
                 // We have enough data for at least one vectorized write.
 
                 var tmp = value; // Avoid taking address of the "value" argument. It would regress performance of the loops below.
                 Vector<byte> vector;
 
-                if (Unsafe.SizeOf<T>() == 1)
-                    vector = new(Unsafe.As<T, byte>(ref tmp));
-                else if (Unsafe.SizeOf<T>() == 2)
-                    vector = (Vector<byte>)new Vector<ushort>(Unsafe.As<T, ushort>(ref tmp));
-                else if (Unsafe.SizeOf<T>() == 4)
+                switch (sizeOfT)
+                {
+                    case 1:
+                        vector = new(Unsafe.As<T, byte>(ref tmp));
+                        break;
+                    case 2:
+                        vector = (Vector<byte>)new Vector<ushort>(Unsafe.As<T, ushort>(ref tmp));
+                        break;
                     // special-case float since it's already passed in a SIMD reg
-                    vector = tmp is float f
-                        ? (Vector<byte>)new Vector<float>(f)
-                        : (Vector<byte>)new Vector<uint>(Unsafe.As<T, uint>(ref tmp));
-                else if (Unsafe.SizeOf<T>() == 8)
+                    case 4: {
+                        vector = tmp is float f
+                            ? (Vector<byte>)new Vector<float>(f)
+                            : (Vector<byte>)new Vector<uint>(Unsafe.As<T, uint>(ref tmp));
+                        break;
+                    }
                     // special-case double since it's already passed in a SIMD reg
-                    vector = tmp is double f
-                        ? (Vector<byte>)new Vector<double>(f)
-                        : (Vector<byte>)new Vector<ulong>(Unsafe.As<T, ulong>(ref tmp));
-#if !NETSTANDARD
-                else if (Unsafe.SizeOf<T>() == 16)
-                {
-                    var vec128 = Unsafe.As<T, Vector128<byte>>(ref tmp);
-                    switch (Vector<byte>.Count)
-                    {
-                        case 16:
-                            vector = vec128.AsVector();
-                            break;
-                        case 32:
-                            vector = Vector256.Create(vec128, vec128).AsVector();
-                            break;
-                        default:
-                            Debug.Fail("Vector<T> isn't 128 or 256 bits in size?");
-                            goto CannotVectorize;
+                    case 8: {
+                        vector = tmp is double f
+                            ? (Vector<byte>)new Vector<double>(f)
+                            : (Vector<byte>)new Vector<ulong>(Unsafe.As<T, ulong>(ref tmp));
+                        break;
                     }
-                }
-                else if (Unsafe.SizeOf<T>() == 32)
-                {
-                    if (Vector<byte>.Count == 32)
-                        vector = Unsafe.As<T, Vector256<byte>>(ref tmp).AsVector();
-                    else
-                    {
-                        Debug.Fail("Vector<T> isn't 256 bits in size?");
-                        goto CannotVectorize;
-                    }
-                }
-#endif
-                else
-                {
+                    default:
 #if !NETSTANDARD
                     Debug.Fail("Vector<T> is greater than 256 bits in size?");
 #endif
-                    goto CannotVectorize;
+                        goto CannotVectorize;
                 }
 
                 ref var refDataAsBytes = ref Unsafe.As<T, byte>(ref refData);
                 var byteVecCount = (nint)Vector<byte>.Count;
                 var byteVecSize = 2 * byteVecCount;
-                var totalByteLength = numElements * (nuint)Unsafe.SizeOf<T>(); // get this calculation ready ahead of time
+                var totalByteLength = numElements * (nuint)sizeOfT; // get this calculation ready ahead of time
                 var stopLoopAtOffset = totalByteLength & (nuint)(-byteVecSize); // intentional sign extension carries the negative bit
                 nuint offset = 0;
 
@@ -95,7 +74,7 @@ namespace StirlingLabs.Utilities
                 // Compare 'numElements' rather than 'stopLoopAtOffset' because we don't want a dependency
                 // on the very recently calculated 'stopLoopAtOffset' value.
 
-                if (numElements >= (uint)(2 * Vector<byte>.Count / Unsafe.SizeOf<T>()))
+                if (numElements >= (uint)(2 * Vector<byte>.Count / sizeOfT))
                     do
                     {
                         Unsafe.WriteUnaligned(ref Unsafe.AddByteOffset(ref refDataAsBytes, (nint)offset), vector);

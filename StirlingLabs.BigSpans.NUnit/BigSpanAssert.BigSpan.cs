@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using JetBrains.Annotations;
 using NUnit.Framework;
 using NUnit.Framework.Constraints;
 
@@ -15,7 +16,7 @@ namespace StirlingLabs.Utilities.Assertions
         /// <param name="collection">BigSpan containing objects to be considered</param>
         /// <param name="expectedType">System.Type that all objects in collection must be instances of</param>
         public static void AllItemsAreInstancesOfType<T>(BigSpan<T> collection, Type expectedType)
-            => AllItemsAreInstancesOfType(collection, expectedType, string.Empty, null);
+            => AllItemsAreInstancesOfType(collection, expectedType, string.Empty, null!);
 
         /// <summary>
         /// Asserts that all items contained in collection are of the type specified by expectedType.
@@ -36,7 +37,7 @@ namespace StirlingLabs.Utilities.Assertions
         /// </summary>
         /// <param name="collection">BigSpan containing objects to be considered</param>
         public static void AllItemsAreNotNull<T>(BigSpan<T> collection)
-            => AllItemsAreNotNull(collection, string.Empty, null);
+            => AllItemsAreNotNull(collection, string.Empty, null!);
 
         /// <summary>
         /// Asserts that all items contained in collection are not equal to null.
@@ -57,7 +58,7 @@ namespace StirlingLabs.Utilities.Assertions
         /// </summary>
         /// <param name="collection">BigSpan of objects to be considered</param>
         public static void AllItemsAreUnique<T>(BigSpan<T> collection)
-            => AllItemsAreUnique(collection, string.Empty, null);
+            => AllItemsAreUnique(collection, string.Empty, null!);
 
         /// <summary>
         /// Ensures that every object contained in collection exists within the collection
@@ -80,7 +81,7 @@ namespace StirlingLabs.Utilities.Assertions
         /// <param name="expected">The first BigSpan of objects to be considered</param>
         /// <param name="actual">The second BigSpan of objects to be considered</param>
         public static void AreEqual<T>(BigSpan<T> expected, BigSpan<T> actual)
-            => AreEqual(expected, actual, string.Empty, null);
+            => AreEqual(expected, actual, string.Empty, null!);
 
         /// <summary>
         /// Asserts that expected and actual are exactly equal.  The collections must have the same count,
@@ -91,7 +92,7 @@ namespace StirlingLabs.Utilities.Assertions
         /// <param name="actual">The second BigSpan of objects to be considered</param>
         /// <param name="comparer">The IComparer to use in comparing objects from each BigSpan</param>
         public static void AreEqual<T>(BigSpan<T> expected, BigSpan<T> actual, IComparer comparer)
-            => AreEqual(expected, actual, comparer, string.Empty, null);
+            => AreEqual(expected, actual, comparer, string.Empty, null!);
 
         /// <summary>
         /// Asserts that expected and actual are exactly equal.  The collections must have the same count,
@@ -129,7 +130,7 @@ namespace StirlingLabs.Utilities.Assertions
         /// <param name="expected">The first IEnumerable of objects to be considered</param>
         /// <param name="actual">The second IEnumerable of objects to be considered</param>
         public static void AreEquivalent<T>(BigSpan<T> expected, BigSpan<T> actual)
-            => AreEquivalent(expected, actual, string.Empty, null);
+            => AreEquivalent(expected, actual, string.Empty, null!);
 
         /// <summary>
         /// Asserts that expected and actual are equivalent, containing the same objects but the match may be in any order.
@@ -152,7 +153,7 @@ namespace StirlingLabs.Utilities.Assertions
         /// <param name="expected">The first IEnumerable of objects to be considered</param>
         /// <param name="actual">The second IEnumerable of objects to be considered</param>
         public static void AreNotEqual<T>(BigSpan<T> expected, BigSpan<T> actual)
-            => AreNotEqual(expected, actual, string.Empty, null);
+            => AreNotEqual(expected, actual, string.Empty, null!);
 
         /// <summary>
         /// Asserts that expected and actual are not exactly equal.
@@ -162,7 +163,7 @@ namespace StirlingLabs.Utilities.Assertions
         /// <param name="actual">The second IEnumerable of objects to be considered</param>
         /// <param name="comparer">The IComparer to use in comparing objects from each BigSpan</param>
         public static void AreNotEqual<T>(BigSpan<T> expected, BigSpan<T> actual, IComparer comparer)
-            => AreNotEqual(expected, actual, comparer, string.Empty, null);
+            => AreNotEqual(expected, actual, comparer, string.Empty, null!);
 
         /// <summary>
         /// Asserts that expected and actual are not exactly equal.
@@ -198,7 +199,7 @@ namespace StirlingLabs.Utilities.Assertions
         /// <param name="expected">The first IEnumerable of objects to be considered</param>
         /// <param name="actual">The second IEnumerable of objects to be considered</param>
         public static void AreNotEquivalent<T>(BigSpan<T> expected, BigSpan<T> actual)
-            => AreNotEquivalent(expected, actual, string.Empty, null);
+            => AreNotEquivalent(expected, actual, string.Empty, null!);
 
         /// <summary>
         /// Asserts that expected and actual are not equivalent.
@@ -221,7 +222,7 @@ namespace StirlingLabs.Utilities.Assertions
         /// <param name="collection">BigSpan of objects to be considered</param>
         /// <param name="actual">Object to be found within collection</param>
         public static void Contains<T>(BigSpan<T> collection, Object actual)
-            => Contains(collection, actual, string.Empty, null);
+            => Contains(collection, actual, string.Empty, null!);
 
         /// <summary>
         /// Asserts that collection contains actual as an item.
@@ -243,7 +244,7 @@ namespace StirlingLabs.Utilities.Assertions
         /// <param name="collection">IEnumerable of objects to be considered</param>
         /// <param name="actual">Object that cannot exist within collection</param>
         public static void DoesNotContain<T>(BigSpan<T> collection, Object actual)
-            => DoesNotContain(collection, actual, string.Empty, null);
+            => DoesNotContain(collection, actual, string.Empty, null!);
 
         /// <summary>
         /// Asserts that collection does not contain actual as an item.
@@ -265,7 +266,7 @@ namespace StirlingLabs.Utilities.Assertions
         /// <param name="subset">The IEnumerable subset to be considered</param>
         /// <param name="superset">The BigSpan superset to be considered</param>
         public static void IsNotSubsetOf<T>(BigSpan<T> subset, BigSpan<T> superset)
-            => IsNotSubsetOf(subset, superset, string.Empty, null);
+            => IsNotSubsetOf(subset, superset, string.Empty, null!);
 
         /// <summary>
         /// Asserts that the superset does not contain the subset
@@ -288,7 +289,7 @@ namespace StirlingLabs.Utilities.Assertions
         /// <param name="subset">The IEnumerable subset to be considered</param>
         /// <param name="superset">The BigSpan superset to be considered</param>
         public static void IsSubsetOf<T>(BigSpan<T> subset, BigSpan<T> superset)
-            => IsSubsetOf(subset, superset, string.Empty, null);
+            => IsSubsetOf(subset, superset, string.Empty, null!);
 
         /// <summary>
         /// Asserts that the superset contains the subset.
@@ -312,7 +313,7 @@ namespace StirlingLabs.Utilities.Assertions
         /// <param name="superset">The IEnumerable superset to be considered</param>
         /// <param name="subset">The BigSpan subset to be considered</param>
         public static void IsNotSupersetOf<T>(BigSpan<T> superset, BigSpan<T> subset)
-            => IsNotSupersetOf(superset, subset, string.Empty, null);
+            => IsNotSupersetOf(superset, subset, string.Empty, null!);
 
         /// <summary>
         /// Asserts that the subset does not contain the superset
@@ -335,7 +336,7 @@ namespace StirlingLabs.Utilities.Assertions
         /// <param name="superset">The BigSpan superset to be considered</param>
         /// <param name="subset">The BigSpan subset to be considered</param>
         public static void IsSupersetOf<T>(BigSpan<T> superset, BigSpan<T> subset)
-            => IsSupersetOf(superset, subset, string.Empty, null);
+            => IsSupersetOf(superset, subset, string.Empty, null!);
 
         /// <summary>
         /// Asserts that the subset contains the superset.
@@ -367,7 +368,7 @@ namespace StirlingLabs.Utilities.Assertions
         /// </summary>
         /// <param name="collection">An array, list or other collection implementing IEnumerable</param>
         public static void IsEmpty<T>(BigSpan<T> collection)
-            => IsEmpty(collection, string.Empty, null);
+            => IsEmpty(collection, string.Empty, null!);
 
         #endregion
 
@@ -387,7 +388,7 @@ namespace StirlingLabs.Utilities.Assertions
         /// </summary>
         /// <param name="collection">An array, list or other collection implementing IEnumerable</param>
         public static void IsNotEmpty<T>(BigSpan<T> collection)
-            => IsNotEmpty(collection, string.Empty, null);
+            => IsNotEmpty(collection, string.Empty, null!);
 
         #endregion
 
@@ -407,7 +408,7 @@ namespace StirlingLabs.Utilities.Assertions
         /// </summary>
         /// <param name="collection">An array, list or other collection implementing IEnumerable</param>
         public static void IsOrdered<T>(BigSpan<T> collection)
-            => IsOrdered(collection, string.Empty, null);
+            => IsOrdered(collection, string.Empty, null!);
 
         /// <summary>
         /// Assert that an array, list or other collection is ordered
@@ -425,7 +426,7 @@ namespace StirlingLabs.Utilities.Assertions
         /// <param name="collection">An array, list or other collection implementing IEnumerable</param>
         /// <param name="comparer">A custom comparer to perform the comparisons</param>
         public static void IsOrdered<T>(BigSpan<T> collection, IComparer comparer)
-            => IsOrdered(collection, comparer, string.Empty, null);
+            => IsOrdered(collection, comparer, string.Empty, null!);
 
         #endregion
     }

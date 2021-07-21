@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
@@ -76,6 +77,7 @@ namespace StirlingLabs.BigSpans.Tests
             }
         }
 
+        [SuppressMessage("Maintainability", "CA1502", Justification = "It's just a hack to get a preview of JIT compiled code")]
         [Explicit]
         [Theory]
         public static unsafe void QuickAsmPeek(DecompileMethod dm)

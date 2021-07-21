@@ -15,15 +15,15 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="AutoBogus" Version="2.13.0" />
+        <PackageReference Include="AutoBogus" Version="2.13.1" />
         <PackageReference Include="Iced" Version="1.13.0" />
         <PackageReference Include="NUnit" Version="3.13.2" />
         <PackageReference Include="NUnit3TestAdapter" Version="4.0.0" />
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.10.0" />
         <PackageReference Include="GitHubActionsTestLogger" Version="1.2.0" />
-        <PackageReference Include="coverlet.collector" Version="3.0.3" PrivateAssets="all" />
-        <PackageReference Include="coverlet.msbuild" Version="3.0.3" PrivateAssets="all" />
-        <PackageReference Include="ReportGenerator" Version="4.8.11" PrivateAssets="all" />
+        <PackageReference Include="coverlet.collector" Version="3.1.0" PrivateAssets="all" />
+        <PackageReference Include="coverlet.msbuild" Version="3.1.0" PrivateAssets="all" />
+        <PackageReference Include="ReportGenerator" Version="4.8.12" PrivateAssets="all" />
     </ItemGroup>
 
     <ItemGroup>
@@ -32,31 +32,17 @@
     </ItemGroup>
     <Target Name="GenerateHtmlCoverageReport" AfterTargets="GenerateCoverageResultAfterTest">
         <!-- remove absolute path using backslashes for windows -->
-        <ReplaceFileTextByLines
-                Condition="$(OS.StartsWith('Windows'))"
-                InputFilename="@(CoverletReport)"
-                OutputFilename="@(CoverletReport)"
-                MatchText="$([System.IO.Path]::GetFullPath('..\StirlingLabs.BigSpans\'))"
-                ReplacementText="" />
+        <ReplaceFileTextByLines Condition="$(OS.StartsWith('Windows'))" InputFilename="@(CoverletReport)" OutputFilename="@(CoverletReport)" MatchText="$([System.IO.Path]::GetFullPath('..\StirlingLabs.BigSpans\'))" ReplacementText="" />
 
         <!-- remove absolute path using forward slashes for other platforms -->
-        <ReplaceFileTextByLines
-                Condition="!$(OS.StartsWith('Windows'))"
-                InputFilename="@(CoverletReport)"
-                OutputFilename="@(CoverletReport)"
-                MatchText="$([System.IO.Path]::GetFullPath('../StirlingLabs.BigSpans/'))"
-                ReplacementText="" />
+        <ReplaceFileTextByLines Condition="!$(OS.StartsWith('Windows'))" InputFilename="@(CoverletReport)" OutputFilename="@(CoverletReport)" MatchText="$([System.IO.Path]::GetFullPath('../StirlingLabs.BigSpans/'))" ReplacementText="" />
 
         <!-- generate markdown coverage report and badges -->
-        <ReportGenerator ReportFiles="@(CoverletReport)"
-                         ReportTypes="MarkdownSummary;Badges"
-                         SourceDirectories="../StirlingLabs.BigSpans"
-                         TargetDirectory="../coverage/" />
+        <ReportGenerator ReportFiles="@(CoverletReport)" ReportTypes="MarkdownSummary;Badges" SourceDirectories="../StirlingLabs.BigSpans" TargetDirectory="../coverage/" />
       </Target>
 
       <!-- task to replace text line for line -->
-      <UsingTask TaskName="ReplaceFileTextByLines" TaskFactory="RoslynCodeTaskFactory"
-                 AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.Core.dll">
+      <UsingTask TaskName="ReplaceFileTextByLines" TaskFactory="RoslynCodeTaskFactory" AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.Core.dll">
         <ParameterGroup>
           <InputFilename ParameterType="System.String" Required="true" />
           <OutputFilename ParameterType="System.String" Required="true" />
