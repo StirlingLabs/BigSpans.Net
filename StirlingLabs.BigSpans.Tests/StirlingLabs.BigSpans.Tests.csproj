@@ -17,7 +17,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\StirlingLabs.BigSpan.NUnit\StirlingLabs.BigSpan.NUnit.csproj" />
+        <ProjectReference Include="..\StirlingLabs.BigSpans.NUnit\StirlingLabs.BigSpans.NUnit.csproj" />
         <ProjectReference Include="..\StirlingLabs.BigSpans\StirlingLabs.BigSpans.csproj" />
     </ItemGroup>
 

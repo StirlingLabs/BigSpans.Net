@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StirlingLabs.BigSpans.Tests
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StirlingLabs.BigSpans", "StirlingLabs.BigSpans\StirlingLabs.BigSpans.csproj", "{85E51B5A-2831-408F-9A58-E8B13509A3C7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StirlingLabs.BigSpan.NUnit", "StirlingLabs.BigSpan.NUnit\StirlingLabs.BigSpan.NUnit.csproj", "{DB28B80E-88B2-46D1-BF72-89C253A95119}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StirlingLabs.BigSpans.NUnit", "StirlingLabs.BigSpans.NUnit\StirlingLabs.BigSpans.NUnit.csproj", "{DB28B80E-88B2-46D1-BF72-89C253A95119}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
