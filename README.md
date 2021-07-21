@@ -3,6 +3,7 @@
 
 ![Øresund Bridge](media/Øresund_Bridge_wide_small.jpg)
 
+![coverage badge](https://github.com/StirlingLabs/BigSpans.Net/blob/coverage/coverage/badge_combined.svg)
 [![CodeFactor](https://www.codefactor.io/repository/github/stirlinglabs/bigspans.net/badge?s=eff9fc166f2e137f96ee77a5d51b8891904fdd92)](https://www.codefactor.io/repository/github/stirlinglabs/bigspans.net)
 
 ## Spans for the whole memory range
