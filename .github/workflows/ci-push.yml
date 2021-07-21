@@ -21,13 +21,13 @@ jobs:
         with:
           token: ${{secrets.DAEMON_NUGET}}
       - name: Build
-        run: dotnet build StirlingLabs.BigSpans.sln -c Release
+        run: dotnet build *.sln -c Release
       - name: Test
-        run: dotnet test StirlingLabs.BigSpans.sln --no-build -c Release --logger GitHubActions
+        run: dotnet test *.sln --no-build -c Release --logger GitHubActions
       - name: Artifacts
         uses: actions/upload-artifact@v2
         with:
-          name: BIGSPANS.Net
+          name: BigSpans.Net
           path: |
             artifacts/*.nupkg
             coverage
