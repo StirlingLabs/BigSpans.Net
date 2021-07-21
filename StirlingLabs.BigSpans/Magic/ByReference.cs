@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
@@ -34,6 +35,7 @@ namespace StirlingLabs.Utilities.Magic
             => _span = MemoryMarshal.CreateReadOnlySpan(ref item, 1);
 #endif
 
+        [DebuggerBrowsable(DebuggerBrowsableState.RootHidden)]
         public ref T Value
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]

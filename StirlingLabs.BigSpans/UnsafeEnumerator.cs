@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
@@ -13,19 +14,18 @@ namespace StirlingLabs.Utilities
     [PublicAPI]
     internal static class UnsafeEnumerator
     {
-        
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static UnsafeEnumerator<T> Create<T>(ref T pointer, nuint length)
             => new(ref pointer, length);
-        
+
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static UnsafeEnumerator<T> Create<T>(Span<T> s)
             => new(s);
-        
+
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static UnsafeEnumerator<T> Create<T>(ReadOnlySpan<T> s)
             => new(s);
-        
+
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static UnsafeEnumerator<T> Create<T>(BigSpan<T> s)
             => new(s);
@@ -39,12 +39,15 @@ namespace StirlingLabs.Utilities
     internal unsafe class UnsafeEnumerator<T> : IEnumerator<T>, IEnumerable<T>
     {
         /// <summary>A byref or a native ptr.</summary>
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         internal readonly void* Pointer;
 
         /// <summary>The number of elements this Span contains.</summary>
         /// <remarks>Due to _pointer being a hack, this must written to immediately after.</remarks>
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         internal readonly nuint Length;
 
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private nuint _offset;
 
         private UnsafeEnumerator() { }
@@ -92,16 +95,19 @@ namespace StirlingLabs.Utilities
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public bool MoveNext()
         {
-            if (_offset >= Length)
-                return false;
             _offset++;
-            return true;
+            if (_offset < Length)
+                return true;
+            
+            _offset--;
+            return false;
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void Reset()
             => _offset = ~default(nuint);
 
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         public ref T Current
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]

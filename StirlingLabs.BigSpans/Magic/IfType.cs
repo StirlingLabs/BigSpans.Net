@@ -1,3 +1,4 @@
+using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 
@@ -13,6 +14,14 @@ namespace StirlingLabs.Utilities.Magic
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool Is<T2>() => _Is<T2>.True;
+
+        private static class _IsPrimitive
+        {
+            public static readonly bool True = typeof(T1).IsPrimitive;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool IsPrimitive() => _IsPrimitive.True;
 
         private static class _IsAssignableTo<T2>
         {

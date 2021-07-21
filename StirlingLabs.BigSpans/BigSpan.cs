@@ -139,6 +139,7 @@ namespace StirlingLabs.Utilities
     [PublicAPI]
     [NonVersionable]
     [DebuggerDisplay("{ToString(),raw}")]
+    [DebuggerTypeProxy(typeof(BigSpanDebugView<>))]
     [StructLayout(LayoutKind.Sequential)]
     public readonly ref struct BigSpan<T>
     {
