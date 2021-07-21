@@ -21,9 +21,9 @@ jobs:
         with:
           token: ${{secrets.DAEMON_NUGET}}
       - name: Build
-        run: dotnet build StirlingLabs.BigSpans.sln -c Release
+        run: dotnet build *.sln -c Release
       - name: Test
-        run: dotnet test StirlingLabs.BigSpans.sln --no-build -c Release --logger GitHubActions
+        run: dotnet test *.sln --no-build -c Release --logger GitHubActions
       - name: Push NuPkg
         run: dotnet nuget push artifacts/*.nupkg -k ${{github.token}} -s https://nuget.pkg.github.com/${{github.repository_owner}}/index.json -n 1
       - name: Save coverage to storage branch
@@ -40,7 +40,7 @@ jobs:
       - name: Create Release
         uses: softprops/action-gh-release@v1
         with:
-          name: BIGSPANS.Net
+          name: BigSpans.Net
           files: |
             artifacts/*.*
         env:
