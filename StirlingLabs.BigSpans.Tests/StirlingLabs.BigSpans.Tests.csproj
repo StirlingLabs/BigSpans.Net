@@ -8,7 +8,7 @@
         <Nullable>enable</Nullable>
     
         <CollectCoverage>true</CollectCoverage>
-        <CoverletOutputFormat>json</CoverletOutputFormat>
+        <CoverletOutputFormat>cobertura</CoverletOutputFormat>
         <CoverletOutput>../coverage/</CoverletOutput>
         <DeterministicReport>true</DeterministicReport>
         <DeterministicSourcePaths>true</DeterministicSourcePaths>
