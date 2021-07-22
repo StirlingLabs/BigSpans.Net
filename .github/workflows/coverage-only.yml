@@ -1,5 +1,5 @@
 
-name: Deployment
+name: Update Coverage Only
 on:
   workflow_dispatch:
 jobs:
