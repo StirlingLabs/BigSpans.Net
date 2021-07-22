@@ -8,7 +8,7 @@
         <Nullable>enable</Nullable>
     
         <CollectCoverage>true</CollectCoverage>
-        <CoverletOutputFormat>lcov</CoverletOutputFormat>
+        <CoverletOutputFormat>json</CoverletOutputFormat>
         <CoverletOutput>../coverage/</CoverletOutput>
         <DeterministicReport>true</DeterministicReport>
         <DeterministicSourcePaths>true</DeterministicSourcePaths>
@@ -30,39 +30,9 @@
         <ProjectReference Include="..\StirlingLabs.BigSpans.NUnit\StirlingLabs.BigSpans.NUnit.csproj" />
         <ProjectReference Include="..\StirlingLabs.BigSpans\StirlingLabs.BigSpans.csproj" />
     </ItemGroup>
+
     <Target Name="GenerateHtmlCoverageReport" AfterTargets="GenerateCoverageResultAfterTest">
-        <!-- remove absolute path using backslashes for windows -->
-        <ReplaceFileTextByLines Condition="$(OS.StartsWith('Windows'))" InputFilename="@(CoverletReport)" OutputFilename="@(CoverletReport)" MatchText="$([System.IO.Path]::GetFullPath('..\StirlingLabs.BigSpans\'))" ReplacementText="" />
-
-        <!-- remove absolute path using forward slashes for other platforms -->
-        <ReplaceFileTextByLines Condition="!$(OS.StartsWith('Windows'))" InputFilename="@(CoverletReport)" OutputFilename="@(CoverletReport)" MatchText="$([System.IO.Path]::GetFullPath('../StirlingLabs.BigSpans/'))" ReplacementText="" />
-
         <!-- generate markdown coverage report and badges -->
         <ReportGenerator ReportFiles="@(CoverletReport)" ReportTypes="MarkdownSummary;Badges" SourceDirectories="../StirlingLabs.BigSpans" TargetDirectory="../coverage/" />
       </Target>
-
-      <!-- task to replace text line for line -->
-      <UsingTask TaskName="ReplaceFileTextByLines" TaskFactory="RoslynCodeTaskFactory" AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.Core.dll">
-        <ParameterGroup>
-          <InputFilename ParameterType="System.String" Required="true" />
-          <OutputFilename ParameterType="System.String" Required="true" />
-          <MatchText ParameterType="System.String" Required="true" />
-          <ReplacementText ParameterType="System.String" Required="false" />
-        </ParameterGroup>
-        <Task>
-          <Using Namespace="System" />
-          <Using Namespace="System.Linq" />
-          <Using Namespace="System.IO" />
-          <Using Namespace="System.Text.RegularExpressions" />
-          <Code Type="Fragment" Language="cs">
-            <![CDATA[
-                File.WriteAllLines(
-                    OutputFilename,
-                    File.ReadAllLines(InputFilename)
-                        .Select(l => l.Replace(MatchText, ReplacementText))
-                );
-              ]]>
-          </Code>
-        </Task>
-      </UsingTask>
 </Project>
