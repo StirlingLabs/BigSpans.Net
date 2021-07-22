@@ -27,8 +27,8 @@ jobs:
         with:
           comment: |
             Coverage for ${{github.ref}}
-            Action: https://github.com/${{github.repository_owner}}/${{github.repository}}/actions/runs/${{github.run_id}}
-            Commit: https://github.com/${{github.repository_owner}}/${{github.repository}}/commit/${{github.sha}}
+            Action: https://github.com/${{github.repository}}/actions/runs/${{github.run_id}}
+            Commit: https://github.com/${{github.repository}}/commit/${{github.sha}}
           storage-branch: coverage
           src: coverage
           dst: coverage
