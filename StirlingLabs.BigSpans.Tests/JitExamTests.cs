@@ -157,6 +157,11 @@ namespace StirlingLabs.BigSpans.Tests
                         TestContext.WriteLine("/* metadata follows */");
                         return true;
                     }
+                    if (u.Pointer[0] == 0x19 && u.Pointer[1] == 0x01 && u.Pointer[2] == 0x01 && u.Pointer[3] == 0x00)
+                    {
+                        TestContext.WriteLine("/* metadata follows */");
+                        return true;
+                    }
                     TestContext.WriteLine($"/* {u.Pointer[0]:X2} {u.Pointer[1]:X2} {u.Pointer[2]:X2} {u.Pointer[3]:X2} ... */");
                     return false;
                 }
