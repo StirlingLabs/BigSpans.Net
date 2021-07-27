@@ -42,6 +42,42 @@ namespace StirlingLabs.Utilities
             return new(ref ptr, length);
         }
 
+        /// <summary>
+        /// Creates a new span over the entirety of the target array.
+        /// </summary>
+        /// <param name="array">The target array.</param>
+        /// <remarks>Returns default when <paramref name="array"/> is null.</remarks>
+        /// <exception cref="System.ArrayTypeMismatchException">Thrown when <paramref name="array"/> is covariant and array's type is not exactly T[].</exception>
+        [SuppressMessage("Microsoft.Design", "CA1045", Justification = "Nope")]
+        public static BigSpan<T> Create<T>(T[] array)
+        {
+            if (BigSpanHelpers.IsReferenceOrContainsReferences<T>())
+                throw new NotSupportedException("Invalid type with pointers.");
+
+            return new(array);
+        }
+
+        /// <summary>
+        /// Creates a new span over the portion of the target array beginning
+        /// at 'start' index and ending at 'end' index (exclusive).
+        /// </summary>
+        /// <param name="array">The target array.</param>
+        /// <param name="start">The index at which to begin the span.</param>
+        /// <param name="length">The number of items in the span.</param>
+        /// <remarks>Returns default when <paramref name="array"/> is null.</remarks>
+        /// <exception cref="System.ArrayTypeMismatchException">Thrown when <paramref name="array"/> is covariant and array's type is not exactly T[].</exception>
+        /// <exception cref="System.ArgumentOutOfRangeException">
+        /// Thrown when the specified <paramref name="start"/> or end index is not in the range (&lt;0 or &gt;Length).
+        /// </exception>
+        [SuppressMessage("Microsoft.Design", "CA1045", Justification = "Nope")]
+        public static BigSpan<T> Create<T>(T[] array, nuint start, nuint length)
+        {
+            if (BigSpanHelpers.IsReferenceOrContainsReferences<T>())
+                throw new NotSupportedException("Invalid type with pointers.");
+
+            return new(array, start, length);
+        }
+
         [SuppressMessage("Reliability", "CA2000", Justification = "Not actually disposable")]
         public static void AsPinnedEnumerables<T>(ReadOnlyBigSpan<T> a, Action<IEnumerable<T>> f)
         {
