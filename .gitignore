@@ -383,9 +383,6 @@ FodyWeavers.xsd
 *.msm
 *.msp
 
-# JetBrains Rider
-.idea/
-*.sln.iml
-.DS_Store
-# Coverage Result
 /coverage
+
+.DS_Store
