@@ -24,6 +24,7 @@
         <PackageReference Include="coverlet.collector" Version="3.1.0" PrivateAssets="all" />
         <PackageReference Include="coverlet.msbuild" Version="3.1.0" PrivateAssets="all" />
         <PackageReference Include="ReportGenerator" Version="4.8.12" PrivateAssets="all" />
+        <PackageReference Include="JetBrains.Annotations" Version="2021.2.0" PrivateAssets="all" />
     </ItemGroup>
 
     <ItemGroup>

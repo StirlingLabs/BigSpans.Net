@@ -1,5 +1,6 @@
 using System;
 using System.Diagnostics.CodeAnalysis;
+using JetBrains.Annotations;
 using NUnit.Framework;
 using StirlingLabs.Utilities;
 
@@ -10,7 +11,7 @@ namespace StirlingLabs.BigSpans.Tests
         public delegate void BigSpanAction(BigSpan<T> span);
 
         [SuppressMessage("Microsoft.Design", "CA1031", Justification = "Test case assertion helper.")]
-        public static TException Throws<TException>(BigSpan<T> span, BigSpanAction action) where TException : Exception
+        public static TException Throws<TException>(BigSpan<T> span, [InstantHandle] BigSpanAction action) where TException : Exception
         {
             Exception? exception;
 

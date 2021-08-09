@@ -1,8 +1,11 @@
+#nullable enable
 using System;
 using System.Buffers;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using System.Threading;
+using System.Threading.Tasks;
 using InlineIL;
 using JetBrains.Annotations;
 using StirlingLabs.Utilities.Magic;
@@ -251,10 +254,10 @@ namespace StirlingLabs.Utilities
             throw Unreachable();
         }
 
-        public static void AsSmallSlices<T>(in this BigSpan<T> span, SpanAction<T> action)
+        public static void AsSmallSlices<T>(in this BigSpan<T> span, [InstantHandle] SpanAction<T> action)
             => span.AsSmallSlices(int.MaxValue, action);
 
-        public static void AsSmallSlices<T>(in this BigSpan<T> span, int size, [NotNull] SpanAction<T> action)
+        public static void AsSmallSlices<T>(in this BigSpan<T> span, int size, [InstantHandle] SpanAction<T> action)
         {
             if (size < 0) throw new ArgumentOutOfRangeException(nameof(size));
             if (action is null) throw new ArgumentNullException(nameof(action));
@@ -262,7 +265,7 @@ namespace StirlingLabs.Utilities
 
             nuint start = 0;
 
-            for(;;)
+            for (;;)
             {
                 var maxSize = span.Length - start;
                 if (maxSize == 0) return;
@@ -270,6 +273,28 @@ namespace StirlingLabs.Utilities
                 var slice = span.Slice(start, sliceSize);
                 start += (uint)sliceSize;
                 action(slice);
+            }
+        }
+
+        public static void AsSmallSlices<T>(in this BigSpan<T> span, [InstantHandle] SpanFunc<T, bool> func)
+            => span.AsSmallSlices(int.MaxValue, func);
+
+        public static void AsSmallSlices<T>(in this BigSpan<T> span, int size, [InstantHandle] SpanFunc<T, bool> func)
+        {
+            if (size < 0) throw new ArgumentOutOfRangeException(nameof(size));
+            if (func is null) throw new ArgumentNullException(nameof(func));
+            var uSize = (uint)size;
+
+            nuint start = 0;
+
+            for (;;)
+            {
+                var maxSize = span.Length - start;
+                if (maxSize == 0) return;
+                var sliceSize = (int)Math.Min(uSize, maxSize);
+                var slice = span.Slice(start, sliceSize);
+                start += (uint)sliceSize;
+                if (!func(slice)) break;
             }
         }
 
@@ -284,7 +309,7 @@ namespace StirlingLabs.Utilities
 
             nuint start = 0;
 
-            for(;;)
+            for (;;)
             {
                 var maxSize = span.Length - start;
                 if (maxSize == 0) return;
@@ -313,7 +338,7 @@ namespace StirlingLabs.Utilities
             var resultIndex = 0;
             var results = new TResult[sliceCount];
 
-            for(;;)
+            for (;;)
             {
                 var maxSize = span.Length - start;
                 if (maxSize == 0) return results;
@@ -342,7 +367,7 @@ namespace StirlingLabs.Utilities
             var resultIndex = 0;
             var results = new TResult[sliceCount];
 
-            for(;;)
+            for (;;)
             {
                 var maxSize = span.Length - start;
                 if (maxSize == 0) return results;
@@ -352,6 +377,7 @@ namespace StirlingLabs.Utilities
                 results[resultIndex++] = fn(slice);
             }
         }
+        
     }
 
     [PublicAPI]
