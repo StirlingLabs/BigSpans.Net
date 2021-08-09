@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<coverage line-rate="0.13720000000000002" branch-rate="0.1114" version="1.9" timestamp="1627404264" lines-covered="192" lines-valid="1399" branches-covered="68" branches-valid="610">
+<coverage line-rate="0.13470000000000001" branch-rate="0.10890000000000001" version="1.9" timestamp="1628548762" lines-covered="192" lines-valid="1425" branches-covered="68" branches-valid="624">
   <sources />
   <packages>
-    <package name="StirlingLabs.BigSpans" line-rate="0.146" branch-rate="0.1114" complexity="778">
+    <package name="StirlingLabs.BigSpans" line-rate="0.1431" branch-rate="0.10890000000000001" complexity="793">
       <classes>
         <class name="System.Runtime.CompilerServices.IgnoresAccessChecksToAttribute" filename="/_/StirlingLabs.BigSpans/Compatibility/IgnoresAccessChecksToAttribute.cs" line-rate="0" branch-rate="1" complexity="2">
           <methods>
@@ -1294,612 +1294,676 @@
             <line number="26" hits="0" branch="False" />
           </lines>
         </class>
-        <class name="StirlingLabs.Utilities.BigSpanExtensions" filename="/_/StirlingLabs.BigSpans/BigSpanExtensions.cs" line-rate="0.1092" branch-rate="0.0689" complexity="80">
+        <class name="StirlingLabs.Utilities.BigSpanExtensions" filename="/_/StirlingLabs.BigSpans/BigSpanExtensions.cs" line-rate="0.0992" branch-rate="0.060599999999999994" complexity="89">
           <methods>
             <method name="CopyTo" signature="(T[],StirlingLabs.Utilities.BigSpan`1&lt;T&gt;)" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="24" hits="6" branch="False" />
+                <line number="27" hits="6" branch="False" />
               </lines>
             </method>
             <method name="CopyTo" signature="(System.Span`1&lt;T&gt;,StirlingLabs.Utilities.BigSpan`1&lt;T&gt;)" line-rate="0" branch-rate="0" complexity="10">
               <lines>
-                <line number="28" hits="0" branch="False" />
-                <line number="29" hits="0" branch="False" />
-                <line number="30" hits="0" branch="True" condition-coverage="0% (0/2)">
+                <line number="31" hits="0" branch="False" />
+                <line number="32" hits="0" branch="False" />
+                <line number="33" hits="0" branch="True" condition-coverage="0% (0/2)">
                   <conditions>
                     <condition number="19" type="jump" coverage="0%" />
                   </conditions>
                 </line>
-                <line number="31" hits="0" branch="False" />
-                <line number="33" hits="0" branch="True" condition-coverage="0% (0/2)">
+                <line number="34" hits="0" branch="False" />
+                <line number="36" hits="0" branch="True" condition-coverage="0% (0/2)">
                   <conditions>
                     <condition number="39" type="jump" coverage="0%" />
                   </conditions>
                 </line>
-                <line number="42" hits="0" branch="False" />
-                <line number="44" hits="0" branch="False" />
-                <line number="50" hits="0" branch="True" condition-coverage="0% (0/2)">
+                <line number="45" hits="0" branch="False" />
+                <line number="47" hits="0" branch="False" />
+                <line number="53" hits="0" branch="True" condition-coverage="0% (0/2)">
                   <conditions>
                     <condition number="74" type="jump" coverage="0%" />
                   </conditions>
                 </line>
-                <line number="51" hits="0" branch="True" condition-coverage="0% (0/2)">
+                <line number="54" hits="0" branch="True" condition-coverage="0% (0/2)">
                   <conditions>
                     <condition number="91" type="jump" coverage="0%" />
                   </conditions>
                 </line>
-                <line number="52" hits="0" branch="False" />
-                <line number="53" hits="0" branch="False" />
-                <line number="54" hits="0" branch="False" />
-                <line number="55" hits="0" branch="True" condition-coverage="0% (0/2)">
+                <line number="55" hits="0" branch="False" />
+                <line number="56" hits="0" branch="False" />
+                <line number="57" hits="0" branch="False" />
+                <line number="58" hits="0" branch="True" condition-coverage="0% (0/2)">
                   <conditions>
                     <condition number="124" type="jump" coverage="0%" />
                   </conditions>
                 </line>
-                <line number="56" hits="0" branch="False" />
-                <line number="57" hits="0" branch="False" />
+                <line number="59" hits="0" branch="False" />
+                <line number="60" hits="0" branch="False" />
               </lines>
             </method>
             <method name="CopyTo" signature="(System.ReadOnlySpan`1&lt;T&gt;,StirlingLabs.Utilities.BigSpan`1&lt;T&gt;)" line-rate="0" branch-rate="0" complexity="10">
               <lines>
-                <line number="61" hits="0" branch="False" />
-                <line number="62" hits="0" branch="False" />
-                <line number="63" hits="0" branch="True" condition-coverage="0% (0/2)">
+                <line number="64" hits="0" branch="False" />
+                <line number="65" hits="0" branch="False" />
+                <line number="66" hits="0" branch="True" condition-coverage="0% (0/2)">
                   <conditions>
                     <condition number="19" type="jump" coverage="0%" />
                   </conditions>
                 </line>
-                <line number="64" hits="0" branch="False" />
-                <line number="66" hits="0" branch="True" condition-coverage="0% (0/2)">
+                <line number="67" hits="0" branch="False" />
+                <line number="69" hits="0" branch="True" condition-coverage="0% (0/2)">
                   <conditions>
                     <condition number="39" type="jump" coverage="0%" />
                   </conditions>
                 </line>
-                <line number="75" hits="0" branch="False" />
-                <line number="77" hits="0" branch="False" />
-                <line number="83" hits="0" branch="True" condition-coverage="0% (0/2)">
+                <line number="78" hits="0" branch="False" />
+                <line number="80" hits="0" branch="False" />
+                <line number="86" hits="0" branch="True" condition-coverage="0% (0/2)">
                   <conditions>
                     <condition number="79" type="jump" coverage="0%" />
                   </conditions>
                 </line>
-                <line number="84" hits="0" branch="True" condition-coverage="0% (0/2)">
+                <line number="87" hits="0" branch="True" condition-coverage="0% (0/2)">
                   <conditions>
                     <condition number="96" type="jump" coverage="0%" />
                   </conditions>
                 </line>
-                <line number="85" hits="0" branch="False" />
-                <line number="86" hits="0" branch="False" />
-                <line number="87" hits="0" branch="False" />
-                <line number="88" hits="0" branch="True" condition-coverage="0% (0/2)">
+                <line number="88" hits="0" branch="False" />
+                <line number="89" hits="0" branch="False" />
+                <line number="90" hits="0" branch="False" />
+                <line number="91" hits="0" branch="True" condition-coverage="0% (0/2)">
                   <conditions>
                     <condition number="129" type="jump" coverage="0%" />
                   </conditions>
                 </line>
-                <line number="89" hits="0" branch="False" />
-                <line number="90" hits="0" branch="False" />
+                <line number="92" hits="0" branch="False" />
+                <line number="93" hits="0" branch="False" />
               </lines>
             </method>
             <method name="SequenceEqual" signature="(StirlingLabs.Utilities.BigSpan`1&lt;T&gt;,StirlingLabs.Utilities.BigSpan`1&lt;T&gt;)" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="95" hits="4098" branch="False" />
+                <line number="98" hits="4098" branch="False" />
               </lines>
             </method>
             <method name="SequenceEqual" signature="(StirlingLabs.Utilities.ReadOnlyBigSpan`1&lt;T&gt;,StirlingLabs.Utilities.BigSpan`1&lt;T&gt;)" line-rate="0" branch-rate="1" complexity="1">
               <lines>
-                <line number="100" hits="0" branch="False" />
+                <line number="103" hits="0" branch="False" />
               </lines>
             </method>
             <method name="SequenceEqual" signature="(StirlingLabs.Utilities.BigSpan`1&lt;T&gt;,StirlingLabs.Utilities.ReadOnlyBigSpan`1&lt;T&gt;)" line-rate="0" branch-rate="1" complexity="1">
               <lines>
-                <line number="105" hits="0" branch="False" />
+                <line number="108" hits="0" branch="False" />
               </lines>
             </method>
             <method name="SequenceEqual" signature="(StirlingLabs.Utilities.ReadOnlyBigSpan`1&lt;T&gt;,StirlingLabs.Utilities.ReadOnlyBigSpan`1&lt;T&gt;)" line-rate="0" branch-rate="1" complexity="1">
               <lines>
-                <line number="110" hits="0" branch="False" />
+                <line number="113" hits="0" branch="False" />
               </lines>
             </method>
             <method name="SequenceEqual" signature="(System.Span`1&lt;T&gt;,StirlingLabs.Utilities.BigSpan`1&lt;T&gt;)" line-rate="0" branch-rate="1" complexity="1">
               <lines>
-                <line number="115" hits="0" branch="False" />
+                <line number="118" hits="0" branch="False" />
               </lines>
             </method>
             <method name="SequenceEqual" signature="(System.ReadOnlySpan`1&lt;T&gt;,StirlingLabs.Utilities.BigSpan`1&lt;T&gt;)" line-rate="0" branch-rate="1" complexity="1">
               <lines>
-                <line number="120" hits="0" branch="False" />
+                <line number="123" hits="0" branch="False" />
               </lines>
             </method>
             <method name="SequenceEqual" signature="(StirlingLabs.Utilities.BigSpan`1&lt;T&gt;,System.ReadOnlySpan`1&lt;T&gt;)" line-rate="0" branch-rate="1" complexity="1">
               <lines>
-                <line number="125" hits="0" branch="False" />
+                <line number="128" hits="0" branch="False" />
               </lines>
             </method>
             <method name="SequenceEqual" signature="(StirlingLabs.Utilities.ReadOnlyBigSpan`1&lt;T&gt;,System.ReadOnlySpan`1&lt;T&gt;)" line-rate="0" branch-rate="1" complexity="1">
               <lines>
-                <line number="130" hits="0" branch="False" />
+                <line number="133" hits="0" branch="False" />
               </lines>
             </method>
             <method name="SequenceCompare" signature="(StirlingLabs.Utilities.BigSpan`1&lt;T&gt;,StirlingLabs.Utilities.BigSpan`1&lt;T&gt;)" line-rate="0" branch-rate="1" complexity="1">
               <lines>
-                <line number="135" hits="0" branch="False" />
+                <line number="138" hits="0" branch="False" />
               </lines>
             </method>
             <method name="SequenceCompare" signature="(StirlingLabs.Utilities.ReadOnlyBigSpan`1&lt;T&gt;,StirlingLabs.Utilities.BigSpan`1&lt;T&gt;)" line-rate="0" branch-rate="1" complexity="1">
               <lines>
-                <line number="140" hits="0" branch="False" />
+                <line number="143" hits="0" branch="False" />
               </lines>
             </method>
             <method name="SequenceCompare" signature="(StirlingLabs.Utilities.BigSpan`1&lt;T&gt;,StirlingLabs.Utilities.ReadOnlyBigSpan`1&lt;T&gt;)" line-rate="0" branch-rate="1" complexity="1">
               <lines>
-                <line number="145" hits="0" branch="False" />
+                <line number="148" hits="0" branch="False" />
               </lines>
             </method>
             <method name="SequenceCompare" signature="(StirlingLabs.Utilities.ReadOnlyBigSpan`1&lt;T&gt;,StirlingLabs.Utilities.ReadOnlyBigSpan`1&lt;T&gt;)" line-rate="0" branch-rate="1" complexity="1">
               <lines>
-                <line number="150" hits="0" branch="False" />
+                <line number="153" hits="0" branch="False" />
               </lines>
             </method>
             <method name="SequenceCompare" signature="(System.Span`1&lt;T&gt;,StirlingLabs.Utilities.BigSpan`1&lt;T&gt;)" line-rate="0" branch-rate="1" complexity="1">
               <lines>
-                <line number="155" hits="0" branch="False" />
+                <line number="158" hits="0" branch="False" />
               </lines>
             </method>
             <method name="SequenceCompare" signature="(System.ReadOnlySpan`1&lt;T&gt;,StirlingLabs.Utilities.BigSpan`1&lt;T&gt;)" line-rate="0" branch-rate="1" complexity="1">
               <lines>
-                <line number="160" hits="0" branch="False" />
+                <line number="163" hits="0" branch="False" />
               </lines>
             </method>
             <method name="SequenceCompare" signature="(StirlingLabs.Utilities.BigSpan`1&lt;T&gt;,System.ReadOnlySpan`1&lt;T&gt;)" line-rate="0" branch-rate="1" complexity="1">
               <lines>
-                <line number="165" hits="0" branch="False" />
+                <line number="168" hits="0" branch="False" />
               </lines>
             </method>
             <method name="SequenceCompare" signature="(StirlingLabs.Utilities.ReadOnlyBigSpan`1&lt;T&gt;,System.ReadOnlySpan`1&lt;T&gt;)" line-rate="0" branch-rate="1" complexity="1">
               <lines>
-                <line number="170" hits="0" branch="False" />
+                <line number="173" hits="0" branch="False" />
               </lines>
             </method>
             <method name="TryWrite" signature="(StirlingLabs.Utilities.BigSpan`1&lt;System.Byte&gt;,T&amp;)" line-rate="0" branch-rate="0" complexity="2">
               <lines>
-                <line number="180" hits="0" branch="True" condition-coverage="0% (0/2)">
+                <line number="183" hits="0" branch="True" condition-coverage="0% (0/2)">
                   <conditions>
                     <condition number="15" type="jump" coverage="0%" />
                   </conditions>
                 </line>
-                <line number="181" hits="0" branch="False" />
-                <line number="182" hits="0" branch="False" />
-                <line number="183" hits="0" branch="False" />
+                <line number="184" hits="0" branch="False" />
+                <line number="185" hits="0" branch="False" />
+                <line number="186" hits="0" branch="False" />
               </lines>
             </method>
             <method name="TryWrite" signature="(StirlingLabs.Utilities.BigSpan`1&lt;System.Byte&gt;,T&amp;,System.UIntPtr)" line-rate="0" branch-rate="0" complexity="2">
               <lines>
-                <line number="194" hits="0" branch="True" condition-coverage="0% (0/2)">
+                <line number="197" hits="0" branch="True" condition-coverage="0% (0/2)">
                   <conditions>
                     <condition number="15" type="jump" coverage="0%" />
                   </conditions>
                 </line>
-                <line number="195" hits="0" branch="False" />
-                <line number="196" hits="0" branch="False" />
-                <line number="197" hits="0" branch="False" />
+                <line number="198" hits="0" branch="False" />
+                <line number="199" hits="0" branch="False" />
+                <line number="200" hits="0" branch="False" />
               </lines>
             </method>
             <method name="Write" signature="(StirlingLabs.Utilities.BigSpan`1&lt;System.Byte&gt;,T&amp;)" line-rate="0" branch-rate="0" complexity="2">
               <lines>
-                <line number="207" hits="0" branch="True" condition-coverage="0% (0/2)">
+                <line number="210" hits="0" branch="True" condition-coverage="0% (0/2)">
                   <conditions>
                     <condition number="7" type="jump" coverage="0%" />
                   </conditions>
                 </line>
-                <line number="208" hits="0" branch="False" />
-                <line number="209" hits="0" branch="False" />
+                <line number="211" hits="0" branch="False" />
+                <line number="212" hits="0" branch="False" />
               </lines>
             </method>
             <method name="Write" signature="(StirlingLabs.Utilities.BigSpan`1&lt;System.Byte&gt;,T&amp;,System.UIntPtr)" line-rate="0" branch-rate="0" complexity="2">
               <lines>
-                <line number="218" hits="0" branch="True" condition-coverage="0% (0/2)">
+                <line number="221" hits="0" branch="True" condition-coverage="0% (0/2)">
                   <conditions>
                     <condition number="8" type="jump" coverage="0%" />
                   </conditions>
                 </line>
-                <line number="219" hits="0" branch="False" />
-                <line number="220" hits="0" branch="False" />
+                <line number="222" hits="0" branch="False" />
+                <line number="223" hits="0" branch="False" />
               </lines>
             </method>
             <method name="TryRead" signature="(StirlingLabs.Utilities.ReadOnlyBigSpan`1&lt;System.Byte&gt;,T&amp;)" line-rate="0" branch-rate="0" complexity="2">
               <lines>
-                <line number="228" hits="0" branch="True" condition-coverage="0% (0/2)">
+                <line number="231" hits="0" branch="True" condition-coverage="0% (0/2)">
                   <conditions>
                     <condition number="13" type="jump" coverage="0%" />
                   </conditions>
                 </line>
-                <line number="230" hits="0" branch="False" />
-                <line number="231" hits="0" branch="False" />
                 <line number="233" hits="0" branch="False" />
                 <line number="234" hits="0" branch="False" />
+                <line number="236" hits="0" branch="False" />
+                <line number="237" hits="0" branch="False" />
               </lines>
             </method>
             <method name="Read" signature="(StirlingLabs.Utilities.ReadOnlyBigSpan`1&lt;System.Byte&gt;)" line-rate="0" branch-rate="1" complexity="1">
               <lines>
-                <line number="241" hits="0" branch="False" />
+                <line number="244" hits="0" branch="False" />
               </lines>
             </method>
             <method name="AsSmallSlices" signature="(StirlingLabs.Utilities.BigSpan`1&lt;T&gt;&amp;,StirlingLabs.Utilities.SpanAction`1&lt;T&gt;)" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="255" hits="6" branch="False" />
+                <line number="258" hits="6" branch="False" />
               </lines>
             </method>
             <method name="AsSmallSlices" signature="(StirlingLabs.Utilities.BigSpan`1&lt;T&gt;&amp;,System.Int32,StirlingLabs.Utilities.SpanAction`1&lt;T&gt;)" line-rate="1" branch-rate="0.6666" complexity="6">
               <lines>
-                <line number="259" hits="6" branch="True" condition-coverage="50% (1/2)">
+                <line number="262" hits="6" branch="True" condition-coverage="50% (1/2)">
                   <conditions>
                     <condition number="2" type="jump" coverage="50%" />
                   </conditions>
                 </line>
-                <line number="260" hits="6" branch="True" condition-coverage="50% (1/2)">
+                <line number="263" hits="6" branch="True" condition-coverage="50% (1/2)">
                   <conditions>
                     <condition number="16" type="jump" coverage="50%" />
                   </conditions>
                 </line>
-                <line number="261" hits="6" branch="False" />
-                <line number="263" hits="6" branch="False" />
-                <line number="267" hits="12" branch="False" />
-                <line number="268" hits="18" branch="True" condition-coverage="100% (2/2)">
+                <line number="264" hits="6" branch="False" />
+                <line number="266" hits="6" branch="False" />
+                <line number="270" hits="12" branch="False" />
+                <line number="271" hits="18" branch="True" condition-coverage="100% (2/2)">
                   <conditions>
                     <condition number="44" type="jump" coverage="100%" />
                   </conditions>
                 </line>
-                <line number="269" hits="6" branch="False" />
-                <line number="270" hits="6" branch="False" />
-                <line number="271" hits="6" branch="False" />
                 <line number="272" hits="6" branch="False" />
+                <line number="273" hits="6" branch="False" />
+                <line number="274" hits="6" branch="False" />
+                <line number="275" hits="6" branch="False" />
               </lines>
             </method>
-            <method name="AsSmallSlices" signature="(StirlingLabs.Utilities.ReadOnlyBigSpan`1&lt;T&gt;&amp;,StirlingLabs.Utilities.ReadOnlySpanAction`1&lt;T&gt;)" line-rate="0" branch-rate="1" complexity="1">
+            <method name="AsSmallSlices" signature="(StirlingLabs.Utilities.BigSpan`1&lt;T&gt;&amp;,StirlingLabs.Utilities.SpanFunc`2&lt;T,System.Boolean&gt;)" line-rate="0" branch-rate="1" complexity="1">
               <lines>
-                <line number="277" hits="0" branch="False" />
+                <line number="280" hits="0" branch="False" />
               </lines>
             </method>
-            <method name="AsSmallSlices" signature="(StirlingLabs.Utilities.ReadOnlyBigSpan`1&lt;T&gt;&amp;,System.Int32,StirlingLabs.Utilities.ReadOnlySpanAction`1&lt;T&gt;)" line-rate="0" branch-rate="0" complexity="6">
+            <method name="AsSmallSlices" signature="(StirlingLabs.Utilities.BigSpan`1&lt;T&gt;&amp;,System.Int32,StirlingLabs.Utilities.SpanFunc`2&lt;T,System.Boolean&gt;)" line-rate="0" branch-rate="0" complexity="8">
               <lines>
-                <line number="281" hits="0" branch="True" condition-coverage="0% (0/2)">
+                <line number="284" hits="0" branch="True" condition-coverage="0% (0/2)">
                   <conditions>
                     <condition number="2" type="jump" coverage="0%" />
                   </conditions>
                 </line>
-                <line number="282" hits="0" branch="True" condition-coverage="0% (0/2)">
+                <line number="285" hits="0" branch="True" condition-coverage="0% (0/2)">
                   <conditions>
                     <condition number="16" type="jump" coverage="0%" />
                   </conditions>
                 </line>
-                <line number="283" hits="0" branch="False" />
-                <line number="285" hits="0" branch="False" />
-                <line number="289" hits="0" branch="False" />
-                <line number="290" hits="0" branch="True" condition-coverage="0% (0/2)">
+                <line number="286" hits="0" branch="False" />
+                <line number="288" hits="0" branch="False" />
+                <line number="292" hits="0" branch="False" />
+                <line number="293" hits="0" branch="True" condition-coverage="0% (0/2)">
                   <conditions>
                     <condition number="44" type="jump" coverage="0%" />
                   </conditions>
                 </line>
-                <line number="291" hits="0" branch="False" />
-                <line number="292" hits="0" branch="False" />
-                <line number="293" hits="0" branch="False" />
                 <line number="294" hits="0" branch="False" />
+                <line number="295" hits="0" branch="False" />
+                <line number="296" hits="0" branch="False" />
+                <line number="297" hits="0" branch="True" condition-coverage="0% (0/2)">
+                  <conditions>
+                    <condition number="81" type="jump" coverage="0%" />
+                  </conditions>
+                </line>
+                <line number="299" hits="0" branch="False" />
+              </lines>
+            </method>
+            <method name="AsSmallSlices" signature="(StirlingLabs.Utilities.ReadOnlyBigSpan`1&lt;T&gt;&amp;,StirlingLabs.Utilities.ReadOnlySpanAction`1&lt;T&gt;)" line-rate="0" branch-rate="1" complexity="1">
+              <lines>
+                <line number="302" hits="0" branch="False" />
+              </lines>
+            </method>
+            <method name="AsSmallSlices" signature="(StirlingLabs.Utilities.ReadOnlyBigSpan`1&lt;T&gt;&amp;,System.Int32,StirlingLabs.Utilities.ReadOnlySpanAction`1&lt;T&gt;)" line-rate="0" branch-rate="0" complexity="6">
+              <lines>
+                <line number="306" hits="0" branch="True" condition-coverage="0% (0/2)">
+                  <conditions>
+                    <condition number="2" type="jump" coverage="0%" />
+                  </conditions>
+                </line>
+                <line number="307" hits="0" branch="True" condition-coverage="0% (0/2)">
+                  <conditions>
+                    <condition number="16" type="jump" coverage="0%" />
+                  </conditions>
+                </line>
+                <line number="308" hits="0" branch="False" />
+                <line number="310" hits="0" branch="False" />
+                <line number="314" hits="0" branch="False" />
+                <line number="315" hits="0" branch="True" condition-coverage="0% (0/2)">
+                  <conditions>
+                    <condition number="44" type="jump" coverage="0%" />
+                  </conditions>
+                </line>
+                <line number="316" hits="0" branch="False" />
+                <line number="317" hits="0" branch="False" />
+                <line number="318" hits="0" branch="False" />
+                <line number="319" hits="0" branch="False" />
               </lines>
             </method>
             <method name="SelectSmallSlices" signature="(StirlingLabs.Utilities.BigSpan`1&lt;T&gt;&amp;,StirlingLabs.Utilities.SpanFunc`2&lt;T,TResult&gt;)" line-rate="0" branch-rate="1" complexity="1">
               <lines>
-                <line number="299" hits="0" branch="False" />
+                <line number="324" hits="0" branch="False" />
               </lines>
             </method>
             <method name="SelectSmallSlices" signature="(StirlingLabs.Utilities.BigSpan`1&lt;T&gt;,System.Int32,StirlingLabs.Utilities.SpanFunc`2&lt;T,TResult&gt;)" line-rate="0" branch-rate="0" complexity="8">
               <lines>
-                <line number="303" hits="0" branch="True" condition-coverage="0% (0/2)">
+                <line number="328" hits="0" branch="True" condition-coverage="0% (0/2)">
                   <conditions>
                     <condition number="2" type="jump" coverage="0%" />
                   </conditions>
                 </line>
-                <line number="304" hits="0" branch="True" condition-coverage="0% (0/2)">
+                <line number="329" hits="0" branch="True" condition-coverage="0% (0/2)">
                   <conditions>
                     <condition number="16" type="jump" coverage="0%" />
                   </conditions>
                 </line>
-                <line number="305" hits="0" branch="False" />
-                <line number="307" hits="0" branch="False" />
-                <line number="309" hits="0" branch="False" />
-                <line number="311" hits="0" branch="True" condition-coverage="0% (0/2)">
+                <line number="330" hits="0" branch="False" />
+                <line number="332" hits="0" branch="False" />
+                <line number="334" hits="0" branch="False" />
+                <line number="336" hits="0" branch="True" condition-coverage="0% (0/2)">
                   <conditions>
                     <condition number="46" type="jump" coverage="0%" />
                   </conditions>
                 </line>
-                <line number="313" hits="0" branch="False" />
-                <line number="314" hits="0" branch="False" />
-                <line number="318" hits="0" branch="False" />
-                <line number="319" hits="0" branch="True" condition-coverage="0% (0/2)">
+                <line number="338" hits="0" branch="False" />
+                <line number="339" hits="0" branch="False" />
+                <line number="343" hits="0" branch="False" />
+                <line number="344" hits="0" branch="True" condition-coverage="0% (0/2)">
                   <conditions>
                     <condition number="79" type="jump" coverage="0%" />
                   </conditions>
                 </line>
-                <line number="320" hits="0" branch="False" />
-                <line number="321" hits="0" branch="False" />
-                <line number="322" hits="0" branch="False" />
-                <line number="323" hits="0" branch="False" />
+                <line number="345" hits="0" branch="False" />
+                <line number="346" hits="0" branch="False" />
+                <line number="347" hits="0" branch="False" />
+                <line number="348" hits="0" branch="False" />
               </lines>
             </method>
             <method name="SelectSmallSlices" signature="(StirlingLabs.Utilities.ReadOnlyBigSpan`1&lt;T&gt;&amp;,StirlingLabs.Utilities.ReadOnlySpanFunc`2&lt;T,TResult&gt;)" line-rate="0" branch-rate="1" complexity="1">
               <lines>
-                <line number="328" hits="0" branch="False" />
+                <line number="353" hits="0" branch="False" />
               </lines>
             </method>
             <method name="SelectSmallSlices" signature="(StirlingLabs.Utilities.ReadOnlyBigSpan`1&lt;T&gt;,System.Int32,StirlingLabs.Utilities.ReadOnlySpanFunc`2&lt;T,TResult&gt;)" line-rate="0" branch-rate="0" complexity="8">
               <lines>
-                <line number="332" hits="0" branch="True" condition-coverage="0% (0/2)">
+                <line number="357" hits="0" branch="True" condition-coverage="0% (0/2)">
                   <conditions>
                     <condition number="2" type="jump" coverage="0%" />
                   </conditions>
                 </line>
-                <line number="333" hits="0" branch="True" condition-coverage="0% (0/2)">
+                <line number="358" hits="0" branch="True" condition-coverage="0% (0/2)">
                   <conditions>
                     <condition number="16" type="jump" coverage="0%" />
                   </conditions>
                 </line>
-                <line number="334" hits="0" branch="False" />
-                <line number="336" hits="0" branch="False" />
-                <line number="338" hits="0" branch="False" />
-                <line number="340" hits="0" branch="True" condition-coverage="0% (0/2)">
+                <line number="359" hits="0" branch="False" />
+                <line number="361" hits="0" branch="False" />
+                <line number="363" hits="0" branch="False" />
+                <line number="365" hits="0" branch="True" condition-coverage="0% (0/2)">
                   <conditions>
                     <condition number="46" type="jump" coverage="0%" />
                   </conditions>
                 </line>
-                <line number="342" hits="0" branch="False" />
-                <line number="343" hits="0" branch="False" />
-                <line number="347" hits="0" branch="False" />
-                <line number="348" hits="0" branch="True" condition-coverage="0% (0/2)">
+                <line number="367" hits="0" branch="False" />
+                <line number="368" hits="0" branch="False" />
+                <line number="372" hits="0" branch="False" />
+                <line number="373" hits="0" branch="True" condition-coverage="0% (0/2)">
                   <conditions>
                     <condition number="79" type="jump" coverage="0%" />
                   </conditions>
                 </line>
-                <line number="349" hits="0" branch="False" />
-                <line number="350" hits="0" branch="False" />
-                <line number="351" hits="0" branch="False" />
-                <line number="352" hits="0" branch="False" />
+                <line number="374" hits="0" branch="False" />
+                <line number="375" hits="0" branch="False" />
+                <line number="376" hits="0" branch="False" />
+                <line number="377" hits="0" branch="False" />
               </lines>
             </method>
           </methods>
           <lines>
-            <line number="24" hits="6" branch="False" />
-            <line number="28" hits="0" branch="False" />
-            <line number="29" hits="0" branch="False" />
-            <line number="30" hits="0" branch="True" condition-coverage="0% (0/2)">
+            <line number="27" hits="6" branch="False" />
+            <line number="31" hits="0" branch="False" />
+            <line number="32" hits="0" branch="False" />
+            <line number="33" hits="0" branch="True" condition-coverage="0% (0/2)">
               <conditions>
                 <condition number="19" type="jump" coverage="0%" />
               </conditions>
             </line>
-            <line number="31" hits="0" branch="False" />
-            <line number="33" hits="0" branch="True" condition-coverage="0% (0/2)">
+            <line number="34" hits="0" branch="False" />
+            <line number="36" hits="0" branch="True" condition-coverage="0% (0/2)">
               <conditions>
                 <condition number="39" type="jump" coverage="0%" />
               </conditions>
             </line>
-            <line number="42" hits="0" branch="False" />
-            <line number="44" hits="0" branch="False" />
-            <line number="50" hits="0" branch="True" condition-coverage="0% (0/2)">
+            <line number="45" hits="0" branch="False" />
+            <line number="47" hits="0" branch="False" />
+            <line number="53" hits="0" branch="True" condition-coverage="0% (0/2)">
               <conditions>
                 <condition number="74" type="jump" coverage="0%" />
               </conditions>
             </line>
-            <line number="51" hits="0" branch="True" condition-coverage="0% (0/2)">
+            <line number="54" hits="0" branch="True" condition-coverage="0% (0/2)">
               <conditions>
                 <condition number="91" type="jump" coverage="0%" />
               </conditions>
             </line>
-            <line number="52" hits="0" branch="False" />
-            <line number="53" hits="0" branch="False" />
-            <line number="54" hits="0" branch="False" />
-            <line number="55" hits="0" branch="True" condition-coverage="0% (0/2)">
+            <line number="55" hits="0" branch="False" />
+            <line number="56" hits="0" branch="False" />
+            <line number="57" hits="0" branch="False" />
+            <line number="58" hits="0" branch="True" condition-coverage="0% (0/2)">
               <conditions>
                 <condition number="124" type="jump" coverage="0%" />
               </conditions>
             </line>
-            <line number="56" hits="0" branch="False" />
-            <line number="57" hits="0" branch="False" />
-            <line number="61" hits="0" branch="False" />
-            <line number="62" hits="0" branch="False" />
-            <line number="63" hits="0" branch="True" condition-coverage="0% (0/2)">
+            <line number="59" hits="0" branch="False" />
+            <line number="60" hits="0" branch="False" />
+            <line number="64" hits="0" branch="False" />
+            <line number="65" hits="0" branch="False" />
+            <line number="66" hits="0" branch="True" condition-coverage="0% (0/2)">
               <conditions>
                 <condition number="19" type="jump" coverage="0%" />
               </conditions>
             </line>
-            <line number="64" hits="0" branch="False" />
-            <line number="66" hits="0" branch="True" condition-coverage="0% (0/2)">
+            <line number="67" hits="0" branch="False" />
+            <line number="69" hits="0" branch="True" condition-coverage="0% (0/2)">
               <conditions>
                 <condition number="39" type="jump" coverage="0%" />
               </conditions>
             </line>
-            <line number="75" hits="0" branch="False" />
-            <line number="77" hits="0" branch="False" />
-            <line number="83" hits="0" branch="True" condition-coverage="0% (0/2)">
+            <line number="78" hits="0" branch="False" />
+            <line number="80" hits="0" branch="False" />
+            <line number="86" hits="0" branch="True" condition-coverage="0% (0/2)">
               <conditions>
                 <condition number="79" type="jump" coverage="0%" />
               </conditions>
             </line>
-            <line number="84" hits="0" branch="True" condition-coverage="0% (0/2)">
+            <line number="87" hits="0" branch="True" condition-coverage="0% (0/2)">
               <conditions>
                 <condition number="96" type="jump" coverage="0%" />
               </conditions>
             </line>
-            <line number="85" hits="0" branch="False" />
-            <line number="86" hits="0" branch="False" />
-            <line number="87" hits="0" branch="False" />
-            <line number="88" hits="0" branch="True" condition-coverage="0% (0/2)">
+            <line number="88" hits="0" branch="False" />
+            <line number="89" hits="0" branch="False" />
+            <line number="90" hits="0" branch="False" />
+            <line number="91" hits="0" branch="True" condition-coverage="0% (0/2)">
               <conditions>
                 <condition number="129" type="jump" coverage="0%" />
               </conditions>
             </line>
-            <line number="89" hits="0" branch="False" />
-            <line number="90" hits="0" branch="False" />
-            <line number="95" hits="4098" branch="False" />
-            <line number="100" hits="0" branch="False" />
-            <line number="105" hits="0" branch="False" />
-            <line number="110" hits="0" branch="False" />
-            <line number="115" hits="0" branch="False" />
-            <line number="120" hits="0" branch="False" />
-            <line number="125" hits="0" branch="False" />
-            <line number="130" hits="0" branch="False" />
-            <line number="135" hits="0" branch="False" />
-            <line number="140" hits="0" branch="False" />
-            <line number="145" hits="0" branch="False" />
-            <line number="150" hits="0" branch="False" />
-            <line number="155" hits="0" branch="False" />
-            <line number="160" hits="0" branch="False" />
-            <line number="165" hits="0" branch="False" />
-            <line number="170" hits="0" branch="False" />
-            <line number="180" hits="0" branch="True" condition-coverage="0% (0/2)">
+            <line number="92" hits="0" branch="False" />
+            <line number="93" hits="0" branch="False" />
+            <line number="98" hits="4098" branch="False" />
+            <line number="103" hits="0" branch="False" />
+            <line number="108" hits="0" branch="False" />
+            <line number="113" hits="0" branch="False" />
+            <line number="118" hits="0" branch="False" />
+            <line number="123" hits="0" branch="False" />
+            <line number="128" hits="0" branch="False" />
+            <line number="133" hits="0" branch="False" />
+            <line number="138" hits="0" branch="False" />
+            <line number="143" hits="0" branch="False" />
+            <line number="148" hits="0" branch="False" />
+            <line number="153" hits="0" branch="False" />
+            <line number="158" hits="0" branch="False" />
+            <line number="163" hits="0" branch="False" />
+            <line number="168" hits="0" branch="False" />
+            <line number="173" hits="0" branch="False" />
+            <line number="183" hits="0" branch="True" condition-coverage="0% (0/2)">
               <conditions>
                 <condition number="15" type="jump" coverage="0%" />
               </conditions>
             </line>
-            <line number="181" hits="0" branch="False" />
-            <line number="182" hits="0" branch="False" />
-            <line number="183" hits="0" branch="False" />
-            <line number="194" hits="0" branch="True" condition-coverage="0% (0/2)">
+            <line number="184" hits="0" branch="False" />
+            <line number="185" hits="0" branch="False" />
+            <line number="186" hits="0" branch="False" />
+            <line number="197" hits="0" branch="True" condition-coverage="0% (0/2)">
               <conditions>
                 <condition number="15" type="jump" coverage="0%" />
               </conditions>
             </line>
-            <line number="195" hits="0" branch="False" />
-            <line number="196" hits="0" branch="False" />
-            <line number="197" hits="0" branch="False" />
-            <line number="207" hits="0" branch="True" condition-coverage="0% (0/2)">
+            <line number="198" hits="0" branch="False" />
+            <line number="199" hits="0" branch="False" />
+            <line number="200" hits="0" branch="False" />
+            <line number="210" hits="0" branch="True" condition-coverage="0% (0/2)">
               <conditions>
                 <condition number="7" type="jump" coverage="0%" />
               </conditions>
             </line>
-            <line number="208" hits="0" branch="False" />
-            <line number="209" hits="0" branch="False" />
-            <line number="218" hits="0" branch="True" condition-coverage="0% (0/2)">
+            <line number="211" hits="0" branch="False" />
+            <line number="212" hits="0" branch="False" />
+            <line number="221" hits="0" branch="True" condition-coverage="0% (0/2)">
               <conditions>
                 <condition number="8" type="jump" coverage="0%" />
               </conditions>
             </line>
-            <line number="219" hits="0" branch="False" />
-            <line number="220" hits="0" branch="False" />
-            <line number="228" hits="0" branch="True" condition-coverage="0% (0/2)">
+            <line number="222" hits="0" branch="False" />
+            <line number="223" hits="0" branch="False" />
+            <line number="231" hits="0" branch="True" condition-coverage="0% (0/2)">
               <conditions>
                 <condition number="13" type="jump" coverage="0%" />
               </conditions>
             </line>
-            <line number="230" hits="0" branch="False" />
-            <line number="231" hits="0" branch="False" />
             <line number="233" hits="0" branch="False" />
             <line number="234" hits="0" branch="False" />
-            <line number="241" hits="0" branch="False" />
-            <line number="255" hits="6" branch="False" />
-            <line number="259" hits="6" branch="True" condition-coverage="50% (1/2)">
+            <line number="236" hits="0" branch="False" />
+            <line number="237" hits="0" branch="False" />
+            <line number="244" hits="0" branch="False" />
+            <line number="258" hits="6" branch="False" />
+            <line number="262" hits="6" branch="True" condition-coverage="50% (1/2)">
               <conditions>
                 <condition number="2" type="jump" coverage="50%" />
               </conditions>
             </line>
-            <line number="260" hits="6" branch="True" condition-coverage="50% (1/2)">
+            <line number="263" hits="6" branch="True" condition-coverage="50% (1/2)">
               <conditions>
                 <condition number="16" type="jump" coverage="50%" />
               </conditions>
             </line>
-            <line number="261" hits="6" branch="False" />
-            <line number="263" hits="6" branch="False" />
-            <line number="267" hits="12" branch="False" />
-            <line number="268" hits="18" branch="True" condition-coverage="100% (2/2)">
+            <line number="264" hits="6" branch="False" />
+            <line number="266" hits="6" branch="False" />
+            <line number="270" hits="12" branch="False" />
+            <line number="271" hits="18" branch="True" condition-coverage="100% (2/2)">
               <conditions>
                 <condition number="44" type="jump" coverage="100%" />
               </conditions>
             </line>
-            <line number="269" hits="6" branch="False" />
-            <line number="270" hits="6" branch="False" />
-            <line number="271" hits="6" branch="False" />
             <line number="272" hits="6" branch="False" />
-            <line number="277" hits="0" branch="False" />
-            <line number="281" hits="0" branch="True" condition-coverage="0% (0/2)">
+            <line number="273" hits="6" branch="False" />
+            <line number="274" hits="6" branch="False" />
+            <line number="275" hits="6" branch="False" />
+            <line number="280" hits="0" branch="False" />
+            <line number="284" hits="0" branch="True" condition-coverage="0% (0/2)">
               <conditions>
                 <condition number="2" type="jump" coverage="0%" />
               </conditions>
             </line>
-            <line number="282" hits="0" branch="True" condition-coverage="0% (0/2)">
+            <line number="285" hits="0" branch="True" condition-coverage="0% (0/2)">
               <conditions>
                 <condition number="16" type="jump" coverage="0%" />
               </conditions>
             </line>
-            <line number="283" hits="0" branch="False" />
-            <line number="285" hits="0" branch="False" />
-            <line number="289" hits="0" branch="False" />
-            <line number="290" hits="0" branch="True" condition-coverage="0% (0/2)">
+            <line number="286" hits="0" branch="False" />
+            <line number="288" hits="0" branch="False" />
+            <line number="292" hits="0" branch="False" />
+            <line number="293" hits="0" branch="True" condition-coverage="0% (0/2)">
               <conditions>
                 <condition number="44" type="jump" coverage="0%" />
               </conditions>
             </line>
-            <line number="291" hits="0" branch="False" />
-            <line number="292" hits="0" branch="False" />
-            <line number="293" hits="0" branch="False" />
             <line number="294" hits="0" branch="False" />
+            <line number="295" hits="0" branch="False" />
+            <line number="296" hits="0" branch="False" />
+            <line number="297" hits="0" branch="True" condition-coverage="0% (0/2)">
+              <conditions>
+                <condition number="81" type="jump" coverage="0%" />
+              </conditions>
+            </line>
             <line number="299" hits="0" branch="False" />
-            <line number="303" hits="0" branch="True" condition-coverage="0% (0/2)">
+            <line number="302" hits="0" branch="False" />
+            <line number="306" hits="0" branch="True" condition-coverage="0% (0/2)">
               <conditions>
                 <condition number="2" type="jump" coverage="0%" />
               </conditions>
             </line>
-            <line number="304" hits="0" branch="True" condition-coverage="0% (0/2)">
+            <line number="307" hits="0" branch="True" condition-coverage="0% (0/2)">
               <conditions>
                 <condition number="16" type="jump" coverage="0%" />
               </conditions>
             </line>
-            <line number="305" hits="0" branch="False" />
-            <line number="307" hits="0" branch="False" />
-            <line number="309" hits="0" branch="False" />
-            <line number="311" hits="0" branch="True" condition-coverage="0% (0/2)">
-              <conditions>
-                <condition number="46" type="jump" coverage="0%" />
-              </conditions>
-            </line>
-            <line number="313" hits="0" branch="False" />
+            <line number="308" hits="0" branch="False" />
+            <line number="310" hits="0" branch="False" />
             <line number="314" hits="0" branch="False" />
-            <line number="318" hits="0" branch="False" />
-            <line number="319" hits="0" branch="True" condition-coverage="0% (0/2)">
+            <line number="315" hits="0" branch="True" condition-coverage="0% (0/2)">
               <conditions>
-                <condition number="79" type="jump" coverage="0%" />
+                <condition number="44" type="jump" coverage="0%" />
               </conditions>
             </line>
-            <line number="320" hits="0" branch="False" />
-            <line number="321" hits="0" branch="False" />
-            <line number="322" hits="0" branch="False" />
-            <line number="323" hits="0" branch="False" />
-            <line number="328" hits="0" branch="False" />
-            <line number="332" hits="0" branch="True" condition-coverage="0% (0/2)">
+            <line number="316" hits="0" branch="False" />
+            <line number="317" hits="0" branch="False" />
+            <line number="318" hits="0" branch="False" />
+            <line number="319" hits="0" branch="False" />
+            <line number="324" hits="0" branch="False" />
+            <line number="328" hits="0" branch="True" condition-coverage="0% (0/2)">
               <conditions>
                 <condition number="2" type="jump" coverage="0%" />
               </conditions>
             </line>
-            <line number="333" hits="0" branch="True" condition-coverage="0% (0/2)">
+            <line number="329" hits="0" branch="True" condition-coverage="0% (0/2)">
               <conditions>
                 <condition number="16" type="jump" coverage="0%" />
               </conditions>
             </line>
+            <line number="330" hits="0" branch="False" />
+            <line number="332" hits="0" branch="False" />
             <line number="334" hits="0" branch="False" />
-            <line number="336" hits="0" branch="False" />
-            <line number="338" hits="0" branch="False" />
-            <line number="340" hits="0" branch="True" condition-coverage="0% (0/2)">
+            <line number="336" hits="0" branch="True" condition-coverage="0% (0/2)">
               <conditions>
                 <condition number="46" type="jump" coverage="0%" />
               </conditions>
             </line>
-            <line number="342" hits="0" branch="False" />
+            <line number="338" hits="0" branch="False" />
+            <line number="339" hits="0" branch="False" />
             <line number="343" hits="0" branch="False" />
-            <line number="347" hits="0" branch="False" />
-            <line number="348" hits="0" branch="True" condition-coverage="0% (0/2)">
+            <line number="344" hits="0" branch="True" condition-coverage="0% (0/2)">
               <conditions>
                 <condition number="79" type="jump" coverage="0%" />
               </conditions>
             </line>
-            <line number="349" hits="0" branch="False" />
-            <line number="350" hits="0" branch="False" />
-            <line number="351" hits="0" branch="False" />
-            <line number="352" hits="0" branch="False" />
+            <line number="345" hits="0" branch="False" />
+            <line number="346" hits="0" branch="False" />
+            <line number="347" hits="0" branch="False" />
+            <line number="348" hits="0" branch="False" />
+            <line number="353" hits="0" branch="False" />
+            <line number="357" hits="0" branch="True" condition-coverage="0% (0/2)">
+              <conditions>
+                <condition number="2" type="jump" coverage="0%" />
+              </conditions>
+            </line>
+            <line number="358" hits="0" branch="True" condition-coverage="0% (0/2)">
+              <conditions>
+                <condition number="16" type="jump" coverage="0%" />
+              </conditions>
+            </line>
+            <line number="359" hits="0" branch="False" />
+            <line number="361" hits="0" branch="False" />
+            <line number="363" hits="0" branch="False" />
+            <line number="365" hits="0" branch="True" condition-coverage="0% (0/2)">
+              <conditions>
+                <condition number="46" type="jump" coverage="0%" />
+              </conditions>
+            </line>
+            <line number="367" hits="0" branch="False" />
+            <line number="368" hits="0" branch="False" />
+            <line number="372" hits="0" branch="False" />
+            <line number="373" hits="0" branch="True" condition-coverage="0% (0/2)">
+              <conditions>
+                <condition number="79" type="jump" coverage="0%" />
+              </conditions>
+            </line>
+            <line number="374" hits="0" branch="False" />
+            <line number="375" hits="0" branch="False" />
+            <line number="376" hits="0" branch="False" />
+            <line number="377" hits="0" branch="False" />
           </lines>
         </class>
         <class name="StirlingLabs.Utilities.BigSpanHelpers" filename="/_/StirlingLabs.BigSpans/BigSpanHelpers.ClearWithoutReferences.cs" line-rate="0.013000000000000001" branch-rate="0.0176" complexity="113">
@@ -5162,6 +5226,72 @@
             <line number="20" hits="0" branch="False" />
             <line number="24" hits="0" branch="False" />
             <line number="26" hits="0" branch="False" />
+          </lines>
+        </class>
+        <class name="StirlingLabs.Utilities.StreamExtensions" filename="/_/StirlingLabs.BigSpans/StreamExtensions.cs" line-rate="0" branch-rate="0" complexity="6">
+          <methods>
+            <method name="Write" signature="(System.IO.Stream,StirlingLabs.Utilities.ReadOnlyBigSpan`1&lt;System.Byte&gt;)" line-rate="0" branch-rate="0" complexity="2">
+              <lines>
+                <line number="11" hits="0" branch="True" condition-coverage="0% (0/2)">
+                  <conditions>
+                    <condition number="1" type="jump" coverage="0%" />
+                  </conditions>
+                </line>
+                <line number="12" hits="0" branch="False" />
+                <line number="13" hits="0" branch="False" />
+              </lines>
+            </method>
+            <method name="Read" signature="(System.IO.Stream,StirlingLabs.Utilities.BigSpan`1&lt;System.Byte&gt;)" line-rate="0" branch-rate="0" complexity="4">
+              <lines>
+                <line number="16" hits="0" branch="True" condition-coverage="0% (0/2)">
+                  <conditions>
+                    <condition number="19" type="jump" coverage="0%" />
+                  </conditions>
+                </line>
+                <line number="18" hits="0" branch="False" />
+                <line number="20" hits="0" branch="False" />
+                <line number="21" hits="0" branch="False" />
+                <line number="22" hits="0" branch="False" />
+                <line number="23" hits="0" branch="True" condition-coverage="0% (0/2)">
+                  <conditions>
+                    <condition number="25" type="jump" coverage="0%" />
+                  </conditions>
+                </line>
+                <line number="24" hits="0" branch="False" />
+                <line number="25" hits="0" branch="False" />
+                <line number="26" hits="0" branch="False" />
+                <line number="27" hits="0" branch="False" />
+                <line number="29" hits="0" branch="False" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="11" hits="0" branch="True" condition-coverage="0% (0/2)">
+              <conditions>
+                <condition number="1" type="jump" coverage="0%" />
+              </conditions>
+            </line>
+            <line number="12" hits="0" branch="False" />
+            <line number="13" hits="0" branch="False" />
+            <line number="16" hits="0" branch="True" condition-coverage="0% (0/2)">
+              <conditions>
+                <condition number="19" type="jump" coverage="0%" />
+              </conditions>
+            </line>
+            <line number="18" hits="0" branch="False" />
+            <line number="20" hits="0" branch="False" />
+            <line number="21" hits="0" branch="False" />
+            <line number="22" hits="0" branch="False" />
+            <line number="23" hits="0" branch="True" condition-coverage="0% (0/2)">
+              <conditions>
+                <condition number="25" type="jump" coverage="0%" />
+              </conditions>
+            </line>
+            <line number="24" hits="0" branch="False" />
+            <line number="25" hits="0" branch="False" />
+            <line number="26" hits="0" branch="False" />
+            <line number="27" hits="0" branch="False" />
+            <line number="29" hits="0" branch="False" />
           </lines>
         </class>
         <class name="StirlingLabs.Utilities.UnmanagedMemory" filename="/_/StirlingLabs.BigSpans/UnmanagedMemory.cs" line-rate="0.3617" branch-rate="0.3" complexity="17">
