@@ -8,7 +8,7 @@
 
 ## Spans for the whole memory range
 
-With StirlingLabs.BigSpans, you have access to BigSpan and ReadOnlyBigSpan in .NET Standard 2.0, 2.1 and .NET 5.0 packages.
+With StirlingLabs.BigSpans, you have access to 64-bit `BigSpan` and `ReadOnlyBigSpan` in .NET Standard 2.0, 2.1 and .NET 5.0 packages.
 
 BigSpans have full interoperability with .NET Standard's System.Memory's Spans and the standard .NET Runtime's Spans.
 
