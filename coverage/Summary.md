@@ -1,16 +1,16 @@
 ﻿# Summary
 |||
 |:---|:---|
-| Generated on: | 08/13/2021 - 22:17:23 |
+| Generated on: | 08/13/2021 - 22:33:25 |
 | Parser: | CoberturaParser |
 | Assemblies: | 2 |
-| Classes: | 22 |
-| Files: | 29 |
-| Covered lines: | 192 |
-| Uncovered lines: | 1233 |
-| Coverable lines: | 1425 |
+| Classes: | 21 |
+| Files: | 26 |
+| Covered lines: | 190 |
+| Uncovered lines: | 1137 |
+| Coverable lines: | 1327 |
 | Total lines: | 4380 |
-| Line coverage: | 13.4% (192 of 1425) |
+| Line coverage: | 14.3% (190 of 1327) |
 | Covered branches: | 68 |
 | Total branches: | 624 |
 | Branch coverage: | 10.8% (68 of 624) |
@@ -39,5 +39,4 @@
 |StirlingLabs.Utilities.UnsafeEnumerator`1|17|22|39|144|43.5%|2|2|100%|
 |StirlingLabs.Utilities.UnsafeEnumeratorExtensions|5|31|36|133|13.8%|1|16|6.2%|
 |System.Runtime.CompilerServices.IgnoresAccessChecksToAttribute|0|3|3|16|0%|0|0||
-|**StirlingLabs.BigSpans.NUnit**|**2**|**96**|**98**|**0**|**2%**|**0**|**0**|****|
-|StirlingLabs.Utilities.Assertions.BigSpanAssert|2|96|98|0|2%|0|0||
+|**StirlingLabs.BigSpans.NUnit**|**0**|**0**|**0**|**0**|****|**0**|**0**|****|
