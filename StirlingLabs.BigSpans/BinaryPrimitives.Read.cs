@@ -4,7 +4,7 @@ using StirlingLabs.Utilities.Magic;
 
 namespace StirlingLabs.Utilities
 {
-    public partial class BinaryPrimitives
+    public static partial class BinaryPrimitives
     {
         /// <summary>
         /// Reads a <see cref="double" /> from the beginning of a read-only span of bytes, as little endian.
