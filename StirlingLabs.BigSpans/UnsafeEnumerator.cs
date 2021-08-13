@@ -127,7 +127,7 @@ namespace StirlingLabs.Utilities
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        void IDisposable.Dispose() { }
+        void IDisposable.Dispose() { /* no need */ }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public IEnumerator<T> GetEnumerator()
