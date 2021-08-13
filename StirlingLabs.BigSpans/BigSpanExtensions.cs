@@ -17,12 +17,6 @@ namespace StirlingLabs.Utilities
     [PublicAPI]
     public static class BigSpanExtensions
     {
-        //public static ref T GetReference<T>(in this BigSpan<T> span) where T : unmanaged
-        //    => ref span._pointer.Value;
-
-        //public static ref T GetReference<T>(in this ReadOnlyBigSpan<T> span) where T : unmanaged
-        //    => ref span._pointer.Value;
-
         public static void CopyTo<T>(this T[] srcArray, BigSpan<T> dst)
             => new BigSpan<T>(srcArray, false).CopyTo(dst);
 
