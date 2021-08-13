@@ -33,6 +33,11 @@ jobs:
           src: coverage
           dst: coverage
           prune: true
+      - name: Upload coverage to Codacy
+        uses: codacy/codacy-coverage-reporter-action@v1
+        with:
+          project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
+          coverage-reports: coverage/coverage.cobertura.xml
       - name: Create Release
         uses: softprops/action-gh-release@v0.1.12
         with:

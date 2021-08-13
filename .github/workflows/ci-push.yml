@@ -20,6 +20,11 @@ jobs:
         run: dotnet build *.sln -c Release
       - name: Test
         run: dotnet test *.sln --no-build -c Release --logger GitHubActions
+      - name: Upload coverage to Codacy
+        uses: codacy/codacy-coverage-reporter-action@v1
+        with:
+          project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
+          coverage-reports: coverage/coverage.cobertura.xml
       - name: Artifacts
         uses: actions/upload-artifact@v2
         with:
