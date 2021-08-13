@@ -1,4 +1,3 @@
-
 # Big Spans
 
 ![Øresund Bridge](media/Øresund_Bridge_wide_small.jpg)
@@ -22,9 +21,8 @@ unsigned integer sized length. This padding is always copied around with
 the BigSpan, so it's safe enough to use to store this information.
 
 A host of useful extensions are provided:
-
-- Fast sequential memory equality and comparisons extensions.
-- A BinaryPrimitives work-alike that works on BigSpans.
-- A pinning `IEnumerable<T>` implementation.
-- Unmanaged memory allocation exposed as BigSpans.
-- Automatic slicing into regular Spans.
+  - Fast sequential memory equality and comparisons extensions.
+  - A BinaryPrimitives work-alike that works on BigSpans.
+  - A pinning `IEnumerable<T>` implementation.
+  - Unmanaged memory allocation exposed as BigSpans.
+  - Automatic slicing into regular Spans.
