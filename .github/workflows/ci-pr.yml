@@ -26,7 +26,7 @@ jobs:
             artifacts/*.nupkg
           if-no-files-found: error
       - name: Report Coverage to PR
-        uses: zattoo/output@v1
+        uses: StirlingLabs/PROutputAction@v1.0.1
         with:
           sources: '.github/coverage/prefix,coverage/,.github/coverage/suffix'
           token: ${{github.token}}
