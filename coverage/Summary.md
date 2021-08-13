@@ -1,7 +1,7 @@
 ﻿# Summary
 |||
 |:---|:---|
-| Generated on: | 08/13/2021 - 22:08:09 |
+| Generated on: | 08/13/2021 - 22:14:56 |
 | Parser: | CoberturaParser |
 | Assemblies: | 2 |
 | Classes: | 22 |
