@@ -5,6 +5,10 @@
 
 ![coverage badge](https://github.com/StirlingLabs/BigSpans.Net/blob/coverage/coverage/badge_combined.svg)
 [![CodeFactor](https://www.codefactor.io/repository/github/stirlinglabs/bigspans.net/badge?s=eff9fc166f2e137f96ee77a5d51b8891904fdd92)](https://www.codefactor.io/repository/github/stirlinglabs/bigspans.net)
+[![Codacy](https://app.codacy.com/project/badge/Grade/895756ab1b8646bdaac016dd7eaefa26)](https://www.codacy.com/gh/StirlingLabs/BigSpans.Net/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=StirlingLabs/BigSpans.Net&amp;utm_campaign=Badge_Grade)
+[![Test Status](https://badgen.net/github/checks/StirlingLabs/BigSpans.Net?icon=github)](https://github.com/StirlingLabs/BigSpans.Net/actions)
+[![Latest Release](https://badgen.net/github/release/StirlingLabs/BigSpans.Net/stable:color?icon=github)](https://github.com/StirlingLabs/BigSpans.Net/releases/latest)
+[![NuGet](https://badgen.net/github/tag/StirlingLabs/BigSpans.Net?icon=nuget)](https://github.com/orgs/StirlingLabs/packages?repo_name=BigSpans.Net)
 
 ## Spans for the whole memory range
 
