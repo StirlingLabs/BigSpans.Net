@@ -3,6 +3,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Security.Cryptography;
 using NUnit.Framework;
 using StirlingLabs.Utilities;
+using StirlingLabs.Utilities.Assertions;
 
 namespace StirlingLabs.BigSpans.Tests
 {
