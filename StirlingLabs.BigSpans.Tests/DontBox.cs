@@ -1,8 +1,10 @@
 using System;
+using System.Diagnostics.CodeAnalysis;
 using StirlingLabs.Utilities;
 
 namespace StirlingLabs.BigSpans.Tests
 {
+    [ExcludeFromCodeCoverage]
     public static class DontBoxExtensions
     {
         /// <summary>

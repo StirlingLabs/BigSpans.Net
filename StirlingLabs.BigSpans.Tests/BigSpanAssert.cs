@@ -6,6 +6,7 @@ using StirlingLabs.Utilities;
 
 namespace StirlingLabs.BigSpans.Tests
 {
+    [ExcludeFromCodeCoverage]
     internal static class BigSpanAssert<T>
     {
         public delegate void BigSpanAction(BigSpan<T> span);

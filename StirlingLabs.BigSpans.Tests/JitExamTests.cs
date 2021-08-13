@@ -16,6 +16,7 @@ using StirlingLabs.Utilities.Magic;
 
 namespace StirlingLabs.BigSpans.Tests
 {
+    [ExcludeFromCodeCoverage]
     public static class JitExamTests
     {
         private const BindingFlags AllDeclared = BindingFlags.DeclaredOnly | BindingFlags.Public | BindingFlags.NonPublic |

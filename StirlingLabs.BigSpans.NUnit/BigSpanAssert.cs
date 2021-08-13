@@ -1,10 +1,12 @@
 using System;
 using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 using JetBrains.Annotations;
 
 namespace StirlingLabs.Utilities.Assertions
 {
     [PublicAPI]
+    [ExcludeFromCodeCoverage]
     public static partial class BigSpanAssert
     {
         /// <summary>

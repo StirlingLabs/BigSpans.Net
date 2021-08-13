@@ -1,5 +1,6 @@
 using System;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
@@ -10,6 +11,7 @@ using StirlingLabs.Utilities.Assertions;
 
 namespace StirlingLabs.BigSpans.Tests
 {
+    [ExcludeFromCodeCoverage]
     public static partial class BigSpanTests
     {
         [Test]

@@ -7,6 +7,7 @@ using System.Runtime.CompilerServices;
 
 namespace StirlingLabs.BigSpans.Tests
 {
+    [ExcludeFromCodeCoverage]
     public readonly struct DecompileMethod : IEquatable<DecompileMethod>
     {
         public readonly nuint Pointer;

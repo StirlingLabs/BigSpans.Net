@@ -3,6 +3,7 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace StirlingLabs
 {
+    [ExcludeFromCodeCoverage]
     [SuppressMessage("	Usage", "CA1806", Justification = "Intentional")]
     internal class GarbageCollectedNotifier
     {

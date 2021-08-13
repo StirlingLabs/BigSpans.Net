@@ -19,7 +19,7 @@
         <PackageReference Include="Iced" Version="1.13.0" />
         <PackageReference Include="NUnit" Version="3.13.2" />
         <PackageReference Include="NUnit3TestAdapter" Version="4.0.0" />
-        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.10.0" />
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.11.0" />
         <PackageReference Include="GitHubActionsTestLogger" Version="1.2.0" />
         <PackageReference Include="coverlet.collector" Version="3.1.0" PrivateAssets="all" />
         <PackageReference Include="coverlet.msbuild" Version="3.1.0" PrivateAssets="all" />
