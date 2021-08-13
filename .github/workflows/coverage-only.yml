@@ -37,7 +37,7 @@ jobs:
           project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
           coverage-reports: StirlingLabs.BigSpans.Tests/bin/Release/coverage/coverage.cobertura.xml
       - name: Create Release
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v0.1.12
         with:
           name: BigSpans.Net
           files: |
