@@ -35,7 +35,7 @@ jobs:
         uses: codacy/codacy-coverage-reporter-action@v1
         with:
           project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
-          coverage-reports: cobertura.xml
+          coverage-reports: BigSpans.Net/StirlingLabs.BigSpans.Tests/bin/Release/coverage/coverage.cobertura.xml
       - name: Create Release
         uses: softprops/action-gh-release@v1
         with:
