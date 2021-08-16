@@ -30,7 +30,7 @@ namespace StirlingLabs.BigSpans.Tests
                 static unsafe DecompileMethod _0()
                 {
                     // create function pointer
-                    var d = (delegate*<bool>)&IfType<byte>.Is<bool>;
+                    var d = (delegate*<bool>)&Type<byte>.Is<bool>;
                     // invoke it to jit it
                     d();
                     // decompile it
@@ -42,7 +42,7 @@ namespace StirlingLabs.BigSpans.Tests
                 static unsafe DecompileMethod _1()
                 {
                     // create function pointer
-                    var d = (delegate*<bool>)&IfType<bool>.Is<bool>;
+                    var d = (delegate*<bool>)&Type<bool>.Is<bool>;
                     // invoke it to jit it
                     d();
                     // decompile it
@@ -54,7 +54,7 @@ namespace StirlingLabs.BigSpans.Tests
                 static unsafe DecompileMethod _2()
                 {
                     // create function pointer
-                    var d = (delegate*<bool>)&IfType<bool>.Is<byte>;
+                    var d = (delegate*<bool>)&Type<bool>.Is<byte>;
                     // invoke it to jit it
                     d();
                     // decompile it
@@ -69,10 +69,10 @@ namespace StirlingLabs.BigSpans.Tests
                 foreach (var mi in typeof(BigSpan).GetMethods(AllDeclared))
                     yield return mi;
 
-                foreach (var mi in typeof(IfType<bool>).GetMethods(AllDeclared))
+                foreach (var mi in typeof(Type<bool>).GetMethods(AllDeclared))
                     yield return mi;
 
-                foreach (var mi in typeof(IfType<byte>).GetMethods(AllDeclared))
+                foreach (var mi in typeof(Type<byte>).GetMethods(AllDeclared))
                     yield return mi;
 
             }

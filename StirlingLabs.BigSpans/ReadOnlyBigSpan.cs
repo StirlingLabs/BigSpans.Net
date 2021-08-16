@@ -544,14 +544,14 @@ namespace StirlingLabs.Utilities
 #if NETSTANDARD2_0
         public override unsafe string ToString()
         {
-            if (IfType<T>.Is<char>() && _length <= int.MaxValue)
+            if (Type<T>.Is<char>() && _length <= int.MaxValue)
                 return new((char*)GetUnsafePointer(), 0, (int)_length);
             return $"ReadOnlyBigSpan<{typeof(T).Name}>[{_length}]";
         }
 #else
         public override string ToString()
         {
-            if (IfType<T>.Is<char>() && _length <= int.MaxValue)
+            if (Type<T>.Is<char>() && _length <= int.MaxValue)
                 return new(MemoryMarshal.CreateReadOnlySpan(ref Unsafe.As<T, char>(ref _pointer.Value), (int)_length));
             return $"ReadOnlyBigSpan<{typeof(T).Name}>[{_length}]";
         }

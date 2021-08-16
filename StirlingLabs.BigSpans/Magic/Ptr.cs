@@ -16,7 +16,7 @@ namespace StirlingLabs.Utilities.Magic
         public unsafe string DebugString
             => Unsafe.IsNullRef(ref Value)
             ? "<null reference>"
-            : IfType<T>.IsPrimitive()
+            : Type<T>.IsPrimitive()
             ? Value!.ToString() ?? ""
             : sizeof(nuint) == 8
                 ? $"@ 0x{(ulong)(nuint)Pointer:X16}"
