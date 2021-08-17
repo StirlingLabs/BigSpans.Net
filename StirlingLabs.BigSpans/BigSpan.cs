@@ -202,7 +202,7 @@ namespace StirlingLabs.Utilities
                 return; // returns default
             }
 
-            if (!typeof(T).IsValueType && Type<T[]>.Matches(array))
+            if (Type<T[]>.IsNotValueType() && Type<T[]>.DoesNotMatch(array))
                 throw new ArrayTypeMismatchException();
 
 #if NETSTANDARD

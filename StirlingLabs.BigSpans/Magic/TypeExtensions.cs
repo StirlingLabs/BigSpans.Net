@@ -90,6 +90,28 @@ namespace StirlingLabs.Utilities.Magic
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool IsNotPrimitive() => !_IsPrimitive.True;
 
+        private static class _IsValueType
+        {
+            public static readonly bool True = typeof(T1).IsValueType;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool IsValueType() => _IsValueType.True;
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool IsNotValueType() => !_IsValueType.True;
+
+        private static class _IsGcRefType
+        {
+            public static readonly bool True = typeof(T1).IsClass;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool IsGcRefType() => _IsGcRefType.True;
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool IsNotGcRefType() => !_IsGcRefType.True;
+
         private static class _IsAssignableTo<T2>
         {
             public static readonly bool True = typeof(T2).IsAssignableFrom(typeof(T1));
