@@ -2,11 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices;
 using JetBrains.Annotations;
-using StirlingLabs.Utilities;
 using StirlingLabs.Utilities.Magic;
 
 namespace StirlingLabs.Utilities
@@ -36,7 +33,7 @@ namespace StirlingLabs.Utilities
     }
 
     [PublicAPI]
-    internal unsafe class UnsafeEnumerator<T> : IEnumerator<T>, IEnumerable<T>
+    internal unsafe class UnsafeEnumerator<T> : IEnumerator<T>, IList<T>, IReadOnlyList<T>
     {
         /// <summary>A byref or a native ptr.</summary>
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -98,7 +95,7 @@ namespace StirlingLabs.Utilities
             _offset++;
             if (_offset < Length)
                 return true;
-            
+
             _offset--;
             return false;
         }
@@ -127,7 +124,10 @@ namespace StirlingLabs.Utilities
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        void IDisposable.Dispose() { /* no need */ }
+        void IDisposable.Dispose()
+        {
+            /* no need */
+        }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public IEnumerator<T> GetEnumerator()
@@ -140,5 +140,58 @@ namespace StirlingLabs.Utilities
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public ref T GetPinnableReference()
             => ref Current;
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public void CopyTo(T[] array, int arrayIndex)
+            => new BigSpan<byte>((byte*)Pointer + _offset * (uint)Unsafe.SizeOf<T>(), Length - _offset).CastAs<T>()
+                .CopyTo(new BigSpan<T>(array).Slice((nuint)arrayIndex));
+
+        public int Count
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            get => (int)Length;
+        }
+
+        public bool IsReadOnly
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            get => true;
+        }
+
+        public T this[int index]
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            get => new BigSpan<byte>(Pointer, Length).CastAs<T>()[(nuint)index];
+            set => throw new NotSupportedException();
+        }
+
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public void Add(T item)
+            => throw new NotSupportedException();
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public bool Remove(T item)
+            => throw new NotSupportedException();
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public bool Contains(T item)
+            => throw new NotSupportedException();
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public void Clear()
+            => throw new NotSupportedException();
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public int IndexOf(T item)
+            => throw new NotSupportedException();
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public void Insert(int index, T item)
+            => throw new NotSupportedException();
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public void RemoveAt(int index)
+            => throw new NotSupportedException();
     }
 }
