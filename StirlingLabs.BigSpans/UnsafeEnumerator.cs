@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using JetBrains.Annotations;
-using StirlingLabs.Utilities.Magic;
 
 namespace StirlingLabs.Utilities
 {

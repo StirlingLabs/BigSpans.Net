@@ -2,7 +2,6 @@ using System;
 using System.Runtime.CompilerServices;
 using NUnit.Framework;
 using StirlingLabs.Utilities;
-using StirlingLabs.Utilities.Magic;
 
 namespace StirlingLabs.BigSpans.Tests
 {

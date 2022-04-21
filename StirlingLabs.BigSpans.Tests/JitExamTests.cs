@@ -12,7 +12,6 @@ using Bogus.Platform;
 using Iced.Intel;
 using NUnit.Framework;
 using StirlingLabs.Utilities;
-using StirlingLabs.Utilities.Magic;
 
 namespace StirlingLabs.BigSpans.Tests
 {

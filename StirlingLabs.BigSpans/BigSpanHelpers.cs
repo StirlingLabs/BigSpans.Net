@@ -2,7 +2,6 @@ using System;
 using System.Collections.Concurrent;
 using System.Runtime.CompilerServices;
 using InlineIL;
-using StirlingLabs.Utilities.Magic;
 
 // @formatter:off
 #if NETSTANDARD2_0

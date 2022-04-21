@@ -33,6 +33,7 @@ namespace StirlingLabs.Utilities.Assertions
         public new static void ReferenceEquals(object a, object b)
             => throw new InvalidOperationException("CollectionAssert.ReferenceEquals should not be used.");
     }
+    [PublicAPI]
     [ExcludeFromCodeCoverage]
     public static class BigSpanAssert<T>
     {
@@ -41,6 +42,8 @@ namespace StirlingLabs.Utilities.Assertions
         [SuppressMessage("Microsoft.Design", "CA1031", Justification = "Test case assertion helper.")]
         public static TException Throws<TException>(BigSpan<T> span, [InstantHandle] BigSpanAction action) where TException : Exception
         {
+            if (action is null) throw new ArgumentNullException(nameof(action));
+
             Exception? exception;
 
             try
@@ -66,6 +69,8 @@ namespace StirlingLabs.Utilities.Assertions
         [SuppressMessage("Microsoft.Design", "CA1031", Justification = "Test case assertion helper.")]
         public static TException Throws<TException>(BigSpan<T> span, BigSpanFunc<T> action) where TException : Exception
         {
+            if (action is null) throw new ArgumentNullException(nameof(action));
+            
             Exception? exception;
 
             try
@@ -89,6 +94,7 @@ namespace StirlingLabs.Utilities.Assertions
         [SuppressMessage("Microsoft.Design", "CA1031", Justification = "Test case assertion helper.")]
         public static TException Throws<TException, TResult>(BigSpan<T> span, BigSpanFunc<TResult> action) where TException : Exception
         {
+            if (action is null) throw new ArgumentNullException(nameof(action));
             Exception? exception;
 
             try

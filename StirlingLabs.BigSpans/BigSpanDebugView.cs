@@ -1,11 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Runtime.InteropServices;
 using JetBrains.Annotations;
 
-namespace StirlingLabs.Utilities.Magic
+namespace StirlingLabs.Utilities
 {
     [PublicAPI]
     // ReSharper disable UseNameofExpression, NotResolvedInText
@@ -28,10 +26,12 @@ namespace StirlingLabs.Utilities.Magic
         public BigSpanDebugView(BigSpan<T> span)
             : this((ReadOnlyBigSpan<T>)span) { }
 
-        public BigSpanDebugView(ReadOnlyBigSpan<T> span)
-            => View = span.Length != 0 ? new(span) : default;
+        public unsafe BigSpanDebugView(ReadOnlyBigSpan<T> span)
+            => View = span.Length != 0
+                ? new(span.GetUnsafePointer(), span.Length)
+                : default;
 
         [DebuggerBrowsable(DebuggerBrowsableState.RootHidden)]
-        public IEnumerable<Ptr<T>> Items => View;
+        public IEnumerable<UnsafePtr<T>> Items => View;
     }
 }

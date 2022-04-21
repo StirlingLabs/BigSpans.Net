@@ -7,7 +7,6 @@ using System.Runtime.InteropServices;
 using System.Runtime.Versioning;
 using InlineIL;
 using JetBrains.Annotations;
-using StirlingLabs.Utilities.Magic;
 using static InlineIL.IL;
 using static InlineIL.IL.Emit;
 
@@ -366,6 +365,7 @@ namespace StirlingLabs.Utilities
         /// Defines an implicit conversion of an array to a <see cref="ReadOnlyBigSpan{T}"/>
         /// </summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        [SuppressMessage("Usage", "CA2225:Operator overloads have named alternates")]
         public static explicit operator ReadOnlyBigSpan<T>(T[]? array) => new(array);
 
         /// <summary>
@@ -429,7 +429,8 @@ namespace StirlingLabs.Utilities
         public ref readonly T GetPinnableReference()
         {
             // Ensure that the native code has just one forward branch that is predicted-not-taken.
-            ref var ret = ref Unsafe.NullRef<T>();
+            // ReSharper disable once SuggestVarOrType_SimpleTypes
+            ref T ret = ref Unsafe.NullRef<T>();
             if (_length != 0) ret = ref _pointer.Value;
             return ref ret;
         }

@@ -8,7 +8,6 @@ using System.Runtime.InteropServices;
 using System.Runtime.Versioning;
 using InlineIL;
 using JetBrains.Annotations;
-using StirlingLabs.Utilities.Magic;
 using static InlineIL.IL;
 using static InlineIL.IL.Emit;
 
@@ -94,6 +93,7 @@ namespace StirlingLabs.Utilities
         }
 
         [SuppressMessage("Reliability", "CA2000", Justification = "Not actually disposable")]
+        [SuppressMessage("ReSharper", "CollectionNeverUpdated.Local")]
         public static void AsPinnedEnumerables<T1, T2>(ReadOnlyBigSpan<T1> a, ReadOnlyBigSpan<T2> b, Action<IEnumerable<T1>, IEnumerable<T2>> f)
         {
             DeclareLocals(
@@ -114,6 +114,7 @@ namespace StirlingLabs.Utilities
         }
 
         [SuppressMessage("Reliability", "CA2000", Justification = "Not actually disposable")]
+        [SuppressMessage("ReSharper", "CollectionNeverUpdated.Local")]
         public static void AsPinnedEnumerables<T1, T2, T3>(ReadOnlyBigSpan<T1> a, ReadOnlyBigSpan<T2> b, ReadOnlyBigSpan<T3> c,
             Action<IEnumerable<T1>, IEnumerable<T2>, IEnumerable<T3>> f)
         {
@@ -139,6 +140,7 @@ namespace StirlingLabs.Utilities
         }
 
         [SuppressMessage("Reliability", "CA2000", Justification = "Not actually disposable")]
+        [SuppressMessage("ReSharper", "CollectionNeverUpdated.Local")]
         public static void AsPinnedEnumerables<T1, T2, T3, T4>(ReadOnlyBigSpan<T1> a, ReadOnlyBigSpan<T2> b, ReadOnlyBigSpan<T3> c,
             ReadOnlyBigSpan<T4> d, Action<IEnumerable<T1>, IEnumerable<T2>, IEnumerable<T3>, IEnumerable<T4>> f)
         {
@@ -439,6 +441,7 @@ namespace StirlingLabs.Utilities
         /// Defines an explicit conversion of an array to a <see cref="BigSpan{T}"/>
         /// </summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        [SuppressMessage("Usage", "CA2225:Operator overloads have named alternates")]
         public static explicit operator BigSpan<T>(T[]? array) => new(array);
 
         /// <summary>
@@ -479,7 +482,8 @@ namespace StirlingLabs.Utilities
         public ref T GetPinnableReference()
         {
             // Ensure that the native code has just one forward branch that is predicted-not-taken.
-            ref var ret = ref Unsafe.NullRef<T>();
+            // ReSharper disable once SuggestVarOrType_SimpleTypes
+            ref T ret = ref Unsafe.NullRef<T>();
             if (_length != 0) ret = ref _pointer.Value;
             return ref ret;
         }
