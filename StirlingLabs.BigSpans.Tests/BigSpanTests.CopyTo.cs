@@ -1,5 +1,6 @@
 using System;
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using System.Security.Cryptography;
 using NUnit.Framework;
 using StirlingLabs.Utilities;
@@ -70,6 +71,21 @@ namespace StirlingLabs.BigSpans.Tests
             Assert.True(success);
             int[] expected = { 1, 2, 3, 102 };
             Assert.AreEqual(expected, dst);
+        }
+
+        [Test]
+        public static void TryCopyToLonger2()
+        {
+            byte[] src = new byte[9];
+            byte[] dst = new byte[131];
+
+            for (var i = 1; i <= 9; ++i)
+                src[i - 1] = (byte)i;
+
+            var srcSpan = new Span<byte>(src);
+            srcSpan.CopyTo((BigSpan<byte>)dst);
+            byte[] expected = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 0 };
+            Assert.AreEqual(expected, dst.Take(10));
         }
 
         [Test]
@@ -299,8 +315,8 @@ namespace StirlingLabs.BigSpans.Tests
 
         [Theory]
         [Explicit]
-        public static unsafe void CopyToLargeSizeTest([Values(uint.MaxValue / 32uL, 256uL + int.MaxValue, 256uL + uint.MaxValue)]
-            ulong longBufferSize)
+        public static unsafe void CopyToLargeSizeTest(
+            [Values(uint.MaxValue / 32uL, 256uL + int.MaxValue, 256uL + uint.MaxValue)] ulong longBufferSize)
         {
             var bufferSize = (nuint)longBufferSize;
 

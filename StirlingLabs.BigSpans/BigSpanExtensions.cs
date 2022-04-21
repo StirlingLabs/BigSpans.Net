@@ -19,22 +19,34 @@ namespace StirlingLabs.Utilities
     {
         public static void CopyTo<T>(this T[] srcArray, BigSpan<T> dst)
             => new BigSpan<T>(srcArray, false).CopyTo(dst);
-
+        
+        /// <summary>
+        /// Copies the contents of this span into destination span. If the source
+        /// and destinations overlap, this method behaves as if the original values in
+        /// a temporary location before the destination is overwritten.
+        /// </summary>
+        /// <param name="src">The span to copy items from.</param>
+        /// <param name="dst">The span to copy items into.</param>
+        /// <exception cref="System.ArgumentException">
+        /// Thrown when the destination Span is shorter than the source Span.
+        /// </exception>
         public static unsafe void CopyTo<T>(this Span<T> src, BigSpan<T> dst)
         {
-            var srcLen = (nuint)src.Length;
-            var dstLen = dst.Length;
-            if (srcLen > dstLen)
-                throw new ArgumentException("Too short.", nameof(dst));
-
-            var length = srcLen < dstLen ? srcLen : dstLen;
-
             DeclareLocals(
                 new LocalVar("rDst", TypeRef.Type<T>().MakeByRefType())
                     .Pinned(),
                 new LocalVar("rSrc", TypeRef.Type<T>().MakeByRefType())
                     .Pinned()
             );
+            
+            var sizeOfT = (nuint)Unsafe.SizeOf<T>();
+            var srcLen = (nuint)src.Length * sizeOfT;
+            var dstLen = dst.Length * sizeOfT;
+            if (srcLen > dstLen)
+                throw new ArgumentException("Too short.", nameof(dst));
+
+            var length = srcLen < dstLen ? srcLen : dstLen;
+            if (length <= 0) return;
 
             Push(ref dst.GetPinnableReference()!);
             Stloc("rDst");
@@ -46,28 +58,79 @@ namespace StirlingLabs.Utilities
             Pop(out var pSrc);
             if (pDst == default) throw new ArgumentNullException(nameof(dst));
             if (pSrc == default) throw new ArgumentNullException(nameof(src));
-            var sizeOfT = (nuint)Unsafe.SizeOf<T>();
-            var srcOffset = sizeOfT * srcLen;
-            var copyLength = length - srcOffset;
-            if (copyLength > 0)
-                BigSpanHelpers.Copy((byte*)pDst + srcOffset, pSrc, copyLength);
+
+            BigSpanHelpers.Copy(pDst, pSrc, length);
         }
 
-        public static unsafe void CopyTo<T>(this ReadOnlySpan<T> src, BigSpan<T> dst)
+        /// <summary>
+        /// Copies the contents of this span into destination span. If the source
+        /// and destinations overlap, this method behaves as if the original values in
+        /// a temporary location before the destination is overwritten.
+        /// </summary>
+        /// <param name="src">The span to copy items from.</param>
+        /// <param name="dst">The span to copy items into.</param>
+        /// <returns>If the destination span is shorter than the source span, this method
+        /// return false and no data is written to the destination.</returns>
+        public static unsafe bool TryCopyTo<T>(this Span<T> src, BigSpan<T> dst)
         {
-            var srcLen = (nuint)src.Length;
-            var dstLen = dst.Length;
-            if (srcLen > dstLen)
-                throw new ArgumentException("Too short.", nameof(dst));
-
-            var length = srcLen < dstLen ? srcLen : dstLen;
-
             DeclareLocals(
                 new LocalVar("rDst", TypeRef.Type<T>().MakeByRefType())
                     .Pinned(),
                 new LocalVar("rSrc", TypeRef.Type<T>().MakeByRefType())
                     .Pinned()
             );
+            
+            var sizeOfT = (nuint)Unsafe.SizeOf<T>();
+            var srcLen = (nuint)src.Length * sizeOfT;
+            var dstLen = dst.Length * sizeOfT;
+            if (srcLen > dstLen)
+                return false;
+
+            var length = srcLen < dstLen ? srcLen : dstLen;
+            if (length <= 0) return true;
+
+            Push(ref dst.GetPinnableReference()!);
+            Stloc("rDst");
+            Push(ref src.GetPinnableReference()!);
+            Stloc("rSrc");
+            Ldloc("rDst");
+            Pop(out var pDst);
+            Ldloc("rSrc");
+            Pop(out var pSrc);
+            if (pDst == default) throw new ArgumentNullException(nameof(dst));
+            if (pSrc == default) throw new ArgumentNullException(nameof(src));
+
+            BigSpanHelpers.Copy(pDst, pSrc, length);
+            return true;
+        }
+
+        /// <summary>
+        /// Copies the contents of this span into destination span. If the source
+        /// and destinations overlap, this method behaves as if the original values in
+        /// a temporary location before the destination is overwritten.
+        /// </summary>
+        /// <param name="src">The span to copy items from.</param>
+        /// <param name="dst">The span to copy items into.</param>
+        /// <exception cref="System.ArgumentException">
+        /// Thrown when the destination Span is shorter than the source Span.
+        /// </exception>
+        public static unsafe void CopyTo<T>(this ReadOnlySpan<T> src, BigSpan<T> dst)
+        {
+            DeclareLocals(
+                new LocalVar("rDst", TypeRef.Type<T>().MakeByRefType())
+                    .Pinned(),
+                new LocalVar("rSrc", TypeRef.Type<T>().MakeByRefType())
+                    .Pinned()
+            );
+            
+            var sizeOfT = (nuint)Unsafe.SizeOf<T>();
+            var srcLen = (nuint)src.Length * sizeOfT;
+            var dstLen = dst.Length * sizeOfT;
+            if (srcLen > dstLen)
+                throw new ArgumentException("Too short.", nameof(dst));
+
+            var length = srcLen < dstLen ? srcLen : dstLen;
+            if (length <= 0) return;
 
             Push(ref dst.GetPinnableReference()!);
             Stloc("rDst");
@@ -79,11 +142,50 @@ namespace StirlingLabs.Utilities
             Pop(out var pSrc);
             if (pDst == default) throw new ArgumentNullException(nameof(dst));
             if (pSrc == default) throw new ArgumentNullException(nameof(src));
+
+            BigSpanHelpers.Copy(pDst, pSrc, length);
+        }
+
+        /// <summary>
+        /// Copies the contents of this span into destination span. If the source
+        /// and destinations overlap, this method behaves as if the original values in
+        /// a temporary location before the destination is overwritten.
+        /// </summary>
+        /// <param name="src">The span to copy items from.</param>
+        /// <param name="dst">The span to copy items into.</param>
+        /// <returns>If the destination span is shorter than the source span, this method
+        /// return false and no data is written to the destination.</returns>
+        public static unsafe bool TryCopyTo<T>(this ReadOnlySpan<T> src, BigSpan<T> dst)
+        {
+            DeclareLocals(
+                new LocalVar("rDst", TypeRef.Type<T>().MakeByRefType())
+                    .Pinned(),
+                new LocalVar("rSrc", TypeRef.Type<T>().MakeByRefType())
+                    .Pinned()
+            );
+            
             var sizeOfT = (nuint)Unsafe.SizeOf<T>();
-            var srcOffset = sizeOfT * srcLen;
-            var copyLength = length - srcOffset;
-            if (copyLength > 0)
-                BigSpanHelpers.Copy((byte*)pDst + srcOffset, pSrc, copyLength);
+            var srcLen = (nuint)src.Length * sizeOfT;
+            var dstLen = dst.Length * sizeOfT;
+            if (srcLen > dstLen)
+                return false;
+
+            var length = srcLen < dstLen ? srcLen : dstLen;
+            if (length <= 0) return true;
+
+            Push(ref dst.GetPinnableReference()!);
+            Stloc("rDst");
+            Push(ref Unsafe.AsRef(src.GetPinnableReference())!);
+            Stloc("rSrc");
+            Ldloc("rDst");
+            Pop(out var pDst);
+            Ldloc("rSrc");
+            Pop(out var pSrc);
+            if (pDst == default) throw new ArgumentNullException(nameof(dst));
+            if (pSrc == default) throw new ArgumentNullException(nameof(src));
+
+            BigSpanHelpers.Copy(pDst, pSrc, length);
+            return true;
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]

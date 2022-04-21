@@ -537,6 +537,13 @@ namespace StirlingLabs.Utilities
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public unsafe void CopyTo(BigSpan<T> destination)
         {
+            DeclareLocals(
+                new LocalVar("rDst", TypeRef.Type<T>().MakeByRefType())
+                    .Pinned(),
+                new LocalVar("rSrc", TypeRef.Type<T>().MakeByRefType())
+                    .Pinned()
+            );
+            
             // Using "if (!TryCopyTo(...))" results in two branches: one for the length
             // check, and one for the result of TryCopyTo. Since these checks are equivalent,
             // we can optimize by performing the check once ourselves then calling Memmove directly.
@@ -548,14 +555,7 @@ namespace StirlingLabs.Utilities
                 throw new ArgumentException("Too short.", nameof(destination));
 
             var length = srcLen < dstLen ? srcLen : dstLen;
-            if (length == default) return;
-
-            DeclareLocals(
-                new LocalVar("rDst", TypeRef.Type<T>().MakeByRefType())
-                    .Pinned(),
-                new LocalVar("rSrc", TypeRef.Type<T>().MakeByRefType())
-                    .Pinned()
-            );
+            if (length <= 0) return;
 
             Push(ref destination.GetPinnableReference()!);
             Stloc("rDst");
@@ -567,8 +567,6 @@ namespace StirlingLabs.Utilities
             Pop(out var pSrc);
             if (pDst == default) throw new ArgumentNullException(nameof(destination));
             if (pSrc == default) throw new NullReferenceException();
-            if (length <= 0)
-                return;
             BigSpanHelpers.Copy(pDst, pSrc, length);
         }
 
@@ -582,6 +580,13 @@ namespace StirlingLabs.Utilities
         /// return false and no data is written to the destination.</returns>
         public unsafe bool TryCopyTo(BigSpan<T> destination)
         {
+            DeclareLocals(
+                new LocalVar("rDst", TypeRef.Type<T>().MakeByRefType())
+                    .Pinned(),
+                new LocalVar("rSrc", TypeRef.Type<T>().MakeByRefType())
+                    .Pinned()
+            );
+            
             var sizeOfT = (nuint)Unsafe.SizeOf<T>();
             var srcLen = _length * sizeOfT;
             var dstLen = destination._length * sizeOfT;
@@ -589,14 +594,7 @@ namespace StirlingLabs.Utilities
                 return false;
 
             var length = srcLen < dstLen ? srcLen : dstLen;
-            if (length == default) return true;
-
-            DeclareLocals(
-                new LocalVar("rDst", TypeRef.Type<T>().MakeByRefType())
-                    .Pinned(),
-                new LocalVar("rSrc", TypeRef.Type<T>().MakeByRefType())
-                    .Pinned()
-            );
+            if (length <= 0) return true;
 
             Push(ref destination.GetPinnableReference()!);
             Stloc("rDst");
@@ -608,8 +606,6 @@ namespace StirlingLabs.Utilities
             Pop(out var pSrc);
             if (pDst == default) throw new ArgumentNullException(nameof(destination));
             if (pSrc == default) throw new NullReferenceException();
-            if (length <= 0)
-                return true;
             BigSpanHelpers.Copy(pDst, pSrc, length);
             return true;
         }
