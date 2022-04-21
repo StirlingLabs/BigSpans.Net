@@ -1,9 +1,9 @@
 using System.Runtime.CompilerServices;
 
-namespace StirlingLabs.Utilities.Compatibility
+namespace StirlingLabs.Utilities.Compatibility;
+
+internal static class NetStandard2Compatibility
 {
-    internal static class NetStandard2Compatibility
-    {
 #if NETSTANDARD
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static int CompareTo(this nuint a, nuint b)
@@ -21,5 +21,4 @@ namespace StirlingLabs.Utilities.Compatibility
         public static int CompareTo(this nuint a, long b)
             => b < 0 ? 1 : a.CompareTo((ulong)b);
 #endif
-    }
 }

@@ -7,8 +7,8 @@ using System.Runtime.Intrinsics;
 
 #endif
 
-namespace StirlingLabs.Utilities
-{
+namespace StirlingLabs.Utilities;
+
     internal static partial class BigSpanHelpers
     {
         public static void Fill<T>(ref T refData, nuint numElements, T value)
@@ -58,7 +58,7 @@ namespace StirlingLabs.Utilities
                     }
                     default:
 #if !NETSTANDARD
-                    Debug.Fail("Vector<T> is greater than 256 bits in size?");
+                        Debug.Fail("Vector<T> is greater than 256 bits in size?");
 #endif
                         goto CannotVectorize;
                 }
@@ -156,4 +156,3 @@ namespace StirlingLabs.Utilities
                 Unsafe.Add(ref refData, (nint)i) = value;
         }
     }
-}

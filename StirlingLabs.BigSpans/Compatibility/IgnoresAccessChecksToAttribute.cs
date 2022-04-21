@@ -1,16 +1,15 @@
 using JetBrains.Annotations;
 
-namespace System.Runtime.CompilerServices
-{
-    [PublicAPI]
-    [AttributeUsage(AttributeTargets.Assembly, AllowMultiple = true)]
-    internal sealed class IgnoresAccessChecksToAttribute : Attribute
-    {
-        private readonly string _assemblyName;
+namespace System.Runtime.CompilerServices;
 
-        // ReSharper disable once ConvertToAutoProperty
-        public string AssemblyName => _assemblyName;
-        public IgnoresAccessChecksToAttribute(string assemblyName)
-            => _assemblyName = assemblyName;
-    }
+[PublicAPI]
+[AttributeUsage(AttributeTargets.Assembly, AllowMultiple = true)]
+internal sealed class IgnoresAccessChecksToAttribute : Attribute
+{
+    private readonly string _assemblyName;
+
+    // ReSharper disable once ConvertToAutoProperty
+    public string AssemblyName => _assemblyName;
+    public IgnoresAccessChecksToAttribute(string assemblyName)
+        => _assemblyName = assemblyName;
 }
