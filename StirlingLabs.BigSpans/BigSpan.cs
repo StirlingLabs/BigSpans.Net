@@ -208,7 +208,7 @@ public readonly ref struct BigSpan<T>
             throw new ArrayTypeMismatchException();
 
 #if NETSTANDARD
-            _pointer = new(ref array[0]);
+        _pointer = new(ref array[0]);
 #else
         _pointer = new(ref MemoryMarshal.GetArrayDataReference(array));
 #endif
@@ -230,7 +230,7 @@ public readonly ref struct BigSpan<T>
         */
 
 #if NETSTANDARD
-            _pointer = new(ref array[0]);
+        _pointer = new(ref array[0]);
 #else
         _pointer = new(ref MemoryMarshal.GetArrayDataReference(array));
 #endif
@@ -276,8 +276,8 @@ public readonly ref struct BigSpan<T>
             throw new ArgumentOutOfRangeException(nameof(length));
 
 #if NETSTANDARD
-            _pointer = new(ref Unsafe.Add(ref array[0],
-                (nint)(uint)start /* force zero-extension */));
+        _pointer = new(ref Unsafe.Add(ref array[0],
+            (nint)(uint)start /* force zero-extension */));
 #else
         _pointer = new(ref Unsafe.Add(ref MemoryMarshal.GetArrayDataReference(array),
             (nint)(uint)start /* force zero-extension */));
@@ -635,12 +635,12 @@ public readonly ref struct BigSpan<T>
     /// Defines an explicit conversion of a <see cref="BigSpan{T}"/> to a <see cref="ReadOnlySpan{T}"/>
     /// </summary>
 #if NETSTANDARD2_0
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static unsafe explicit operator ReadOnlySpan<T>(BigSpan<T> bigSpan) =>
-            bigSpan._length <= int.MaxValue
-                ? new ReadOnlySpan<T>(bigSpan.GetUnsafePointer(), (int)bigSpan._length)
-                : throw new NotSupportedException(
-                    $"Not possible to create ReadOnlySpans longer than {int.MaxValue} (maximum 32-bit integer value)");
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static unsafe explicit operator ReadOnlySpan<T>(BigSpan<T> bigSpan) =>
+        bigSpan._length <= int.MaxValue
+            ? new ReadOnlySpan<T>(bigSpan.GetUnsafePointer(), (int)bigSpan._length)
+            : throw new NotSupportedException(
+                $"Not possible to create ReadOnlySpans longer than {int.MaxValue} (maximum 32-bit integer value)");
 #else
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static explicit operator ReadOnlySpan<T>(BigSpan<T> bigSpan) =>
@@ -654,12 +654,12 @@ public readonly ref struct BigSpan<T>
     /// Defines an explicit conversion of a <see cref="BigSpan{T}"/> to a <see cref="Span{T}"/>
     /// </summary>
 #if NETSTANDARD2_0
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static unsafe explicit operator Span<T>(BigSpan<T> bigSpan) =>
-            bigSpan._length <= int.MaxValue
-                ? new Span<T>(bigSpan.GetUnsafePointer(), (int)bigSpan._length)
-                : throw new NotSupportedException(
-                    $"Not possible to create ReadOnlySpans longer than {int.MaxValue} (maximum 32-bit integer value)");
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static unsafe explicit operator Span<T>(BigSpan<T> bigSpan) =>
+        bigSpan._length <= int.MaxValue
+            ? new Span<T>(bigSpan.GetUnsafePointer(), (int)bigSpan._length)
+            : throw new NotSupportedException(
+                $"Not possible to create ReadOnlySpans longer than {int.MaxValue} (maximum 32-bit integer value)");
 #else
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static explicit operator Span<T>(BigSpan<T> bigSpan) =>
@@ -686,12 +686,12 @@ public readonly ref struct BigSpan<T>
     /// Otherwise, returns a <see cref="string"/> with the name of the type and the number of elements.
     /// </summary>
 #if NETSTANDARD2_0
-        public override unsafe string ToString()
-        {
-            if (Type<T>.Is<char>() && _length <= int.MaxValue)
-                return new((char*)GetUnsafePointer(), 0, (int)_length);
-            return $"BigSpan<{typeof(T).Name}>[{_length}]";
-        }
+    public override unsafe string ToString()
+    {
+        if (Type<T>.Is<char>() && _length <= int.MaxValue)
+            return new((char*)GetUnsafePointer(), 0, (int)_length);
+        return $"BigSpan<{typeof(T).Name}>[{_length}]";
+    }
 #else
     public override string ToString()
     {
@@ -749,16 +749,16 @@ public readonly ref struct BigSpan<T>
     /// Thrown when the specified <paramref name="start"/> or end index is not in range (&lt;0 or &gt;Length).
     /// </exception>
 #if NETSTANDARD2_0
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public unsafe Span<T> Slice(nuint start, int length)
-        {
-            if (length < 0)
-                throw new ArgumentOutOfRangeException(nameof(length), $"Length was less than zero. ({length})");
-            if (start + (nuint)length > _length)
-                throw new ArgumentOutOfRangeException(nameof(length));
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public unsafe Span<T> Slice(nuint start, int length)
+    {
+        if (length < 0)
+            throw new ArgumentOutOfRangeException(nameof(length), $"Length was less than zero. ({length})");
+        if (start + (nuint)length > _length)
+            throw new ArgumentOutOfRangeException(nameof(length));
 
-            return new(GetUnsafePointer(), length);
-        }
+        return new(GetUnsafePointer(), length);
+    }
 #else
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public Span<T> Slice(nuint start, int length)
@@ -781,18 +781,18 @@ public readonly ref struct BigSpan<T>
     /// Thrown when the specified <paramref name="start"/> or end index is not in range (&lt;0 or &gt;Length).
     /// </exception>
 #if NETSTANDARD2_0
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public unsafe Span<T> Slice(int start, int length)
-        {
-            if (start < 0)
-                throw new ArgumentOutOfRangeException(nameof(start));
-            if (length < 0)
-                throw new ArgumentOutOfRangeException(nameof(length));
-            if ((nuint)start + (nuint)length > _length)
-                throw new ArgumentOutOfRangeException(nameof(length));
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public unsafe Span<T> Slice(int start, int length)
+    {
+        if (start < 0)
+            throw new ArgumentOutOfRangeException(nameof(start));
+        if (length < 0)
+            throw new ArgumentOutOfRangeException(nameof(length));
+        if ((nuint)start + (nuint)length > _length)
+            throw new ArgumentOutOfRangeException(nameof(length));
 
-            return new((byte*)GetUnsafePointer() + start * Unsafe.SizeOf<T>(), length);
-        }
+        return new((byte*)GetUnsafePointer() + start * Unsafe.SizeOf<T>(), length);
+    }
 #else
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public Span<T> Slice(int start, int length)

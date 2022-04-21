@@ -54,17 +54,17 @@ internal static partial class BigSpanHelpers
         => _IsReferenceOrContainsReferencesCache.GetOrAdd(t, IsReferenceOrContainsReferencesInternal);
 
 #if NETSTANDARD2_0
-        public static bool IsReferenceOrContainsReferences<T>()
-            => IsReferenceOrContainsReferences(typeof(T));
+    public static bool IsReferenceOrContainsReferences<T>()
+        => IsReferenceOrContainsReferences(typeof(T));
 
-        private static bool IsReferenceOrContainsReferencesInternal(Type t)
-        {
-            if (t.IsClass) return true;
+    private static bool IsReferenceOrContainsReferencesInternal(Type t)
+    {
+        if (t.IsClass) return true;
 
-            var fields = t.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+        var fields = t.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
 
-            return fields.Any(f => IsReferenceOrContainsReferences(f.FieldType));
-        }
+        return fields.Any(f => IsReferenceOrContainsReferences(f.FieldType));
+    }
 #else
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool IsReferenceOrContainsReferences<T>()
