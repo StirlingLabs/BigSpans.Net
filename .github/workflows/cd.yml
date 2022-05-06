@@ -48,3 +48,5 @@ jobs:
             artifacts/*.*
         env:
           GITHUB_TOKEN: ${{github.token}}
+      - name: Push NuGet Packages (NuGet.org)
+        run: dotnet nuget push artifacts/*.nupkg -k ${{secrets.NUGET_STIRLINGLABS_API_KEY}} -s https://api.nuget.org/v3/index.json -n 1 --skip-duplicate || true

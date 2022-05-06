@@ -17,15 +17,18 @@
 
     <ItemGroup>
         <PackageReference Include="AutoBogus" Version="2.13.1" />
-        <PackageReference Include="Iced" Version="1.13.0" />
-        <PackageReference Include="NUnit" Version="3.13.2" />
-        <PackageReference Include="NUnit3TestAdapter" Version="4.0.0" />
-        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.11.0" />
-        <PackageReference Include="GitHubActionsTestLogger" Version="1.2.0" />
-        <PackageReference Include="coverlet.collector" Version="3.1.0" PrivateAssets="all" />
-        <PackageReference Include="coverlet.msbuild" Version="3.1.0" PrivateAssets="all" />
-        <PackageReference Include="ReportGenerator" Version="4.8.12" PrivateAssets="all" />
-        <PackageReference Include="JetBrains.Annotations" Version="2021.2.0" PrivateAssets="all" />
+        <PackageReference Include="Iced" Version="1.17.0" />
+        <PackageReference Include="NUnit" Version="3.13.3" />
+        <PackageReference Include="NUnit3TestAdapter" Version="4.2.1" />
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.1.0" />
+        <PackageReference Include="GitHubActionsTestLogger" Version="1.4.1">
+          <PrivateAssets>all</PrivateAssets>
+          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="coverlet.collector" Version="3.1.2" PrivateAssets="all" />
+        <PackageReference Include="coverlet.msbuild" Version="3.1.2" PrivateAssets="all" />
+        <PackageReference Include="ReportGenerator" Version="5.1.6" PrivateAssets="all" />
+        <PackageReference Include="JetBrains.Annotations" Version="2022.1.0" PrivateAssets="all" />
     </ItemGroup>
 
     <ItemGroup>
