@@ -1,8 +1,8 @@
 # Big Spans
 
-![Øresund Bridge](media/Øresund_Bridge_wide_small.jpg)
+![Øresund Bridge](https://raw.githubusercontent.com/StirlingLabs/BigSpans.Net/663eb219eeb126bd2df585840a1a490de9420376/media/Øresund_Bridge_wide_small.jpg)
 
-![coverage badge](https://github.com/StirlingLabs/BigSpans.Net/blob/coverage/coverage/badge_combined.svg)
+![coverage badge](https://raw.githubusercontent.com/StirlingLabs/BigSpans.Net/coverage/coverage/badge_combined.svg)
 [![CodeFactor](https://www.codefactor.io/repository/github/stirlinglabs/bigspans.net/badge?s=eff9fc166f2e137f96ee77a5d51b8891904fdd92)](https://www.codefactor.io/repository/github/stirlinglabs/bigspans.net)
 [![Codacy](https://app.codacy.com/project/badge/Grade/895756ab1b8646bdaac016dd7eaefa26)](https://www.codacy.com/gh/StirlingLabs/BigSpans.Net/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=StirlingLabs/BigSpans.Net&amp;utm_campaign=Badge_Grade)
 [![Test Status](https://badgen.net/github/checks/StirlingLabs/BigSpans.Net?icon=github)](https://github.com/StirlingLabs/BigSpans.Net/actions)
