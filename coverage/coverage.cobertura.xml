@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<coverage line-rate="0.1646" branch-rate="0.1324" version="1.9" timestamp="1663956180" lines-covered="195" lines-valid="1184" branches-covered="71" branches-valid="536">
+<coverage line-rate="0.1646" branch-rate="0.1324" version="1.9" timestamp="1663956356" lines-covered="195" lines-valid="1184" branches-covered="71" branches-valid="536">
   <sources />
   <packages>
     <package name="StirlingLabs.BigSpans.NUnit" line-rate="1" branch-rate="1" complexity="0">
