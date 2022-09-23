@@ -2,7 +2,10 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentation", "{7FC19F8D-0A21-4CFC-AAA5-17B41798F743}"
 ProjectSection(SolutionItems) = preProject
-	README.md = README.md
+    .editorconfig = .editorconfig
+	.gitignore = .gitignore
+	nuget.config = nuget.config
+	Version.proj = Version.proj
 EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StirlingLabs.BigSpans.Tests", "StirlingLabs.BigSpans.Tests\StirlingLabs.BigSpans.Tests.csproj", "{9203218D-533B-4F43-A3AB-4FD7BB45BB70}"
