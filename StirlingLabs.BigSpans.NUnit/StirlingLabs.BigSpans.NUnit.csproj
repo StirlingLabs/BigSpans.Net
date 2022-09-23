@@ -18,8 +18,8 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Fody" Version="6.6.1" PrivateAssets="all" />
-        <PackageReference Include="InlineIL.Fody" Version="1.7.1" PrivateAssets="all" />
+        <PackageReference Include="Fody" Version="6.6.3" PrivateAssets="all" />
+        <PackageReference Include="InlineIL.Fody" Version="1.7.2" PrivateAssets="all" />
         <PackageReference Include="NUnit" Version="3.13.3" />
         <PackageReference Include="JetBrains.Annotations" Version="2022.1.0" PrivateAssets="all" />
         <PackageReference Update="Microsoft.Build.Tasks.Git" Version="1.1.1" />

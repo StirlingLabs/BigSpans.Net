@@ -14,10 +14,10 @@
     </ImportGroup>
 
     <ItemGroup>
-        <PackageReference Include="Fody" Version="6.6.1" PrivateAssets="all" />
-        <PackageReference Include="InlineIL.Fody" Version="1.7.1" PrivateAssets="all" />
+        <PackageReference Include="Fody" Version="6.6.3" PrivateAssets="all" />
+        <PackageReference Include="InlineIL.Fody" Version="1.7.2" PrivateAssets="all" />
         <PackageReference Include="JetBrains.Annotations" Version="2022.1.0" PrivateAssets="all" />
-        <PackageReference Include="StirlingLabs.Utilities.Magic" Version="22.4.9" />
+        <PackageReference Include="StirlingLabs.Utilities.Magic" Version="22.9.1" />
         <PackageReference Update="Microsoft.Build.Tasks.Git" Version="1.1.1" />
         <PackageReference Update="Microsoft.SourceLink.Common" Version="1.1.1" />
         <PackageReference Update="Microsoft.SourceLink.GitHub" Version="1.1.1" />
@@ -25,7 +25,7 @@
 
     <ItemGroup Condition="'$(TargetFramework)'=='netstandard2.0'">
         <PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="6.0.0" />
-        <PackageReference Include="System.Memory" Version="4.5.4" />
+        <PackageReference Include="System.Memory" Version="4.5.5" />
     </ItemGroup>
 
     <ItemGroup Condition="'$(TargetFramework)'=='netstandard2.1'">
