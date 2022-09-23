@@ -1,23 +1,23 @@
 ﻿# Summary
 |||
 |:---|:---|
-| Generated on: | 05/06/2022 - 17:22:36 |
-| Coverage date: | 05/06/2022 - 17:22:36 |
+| Generated on: | 09/23/2022 - 15:22:55 |
+| Coverage date: | 09/23/2022 - 15:22:54 |
 | Parser: | Cobertura |
 | Assemblies: | 2 |
 | Classes: | 15 |
 | Files: | 17 |
+| **Line coverage:** | 16.4% (195 of 1184) |
 | Covered lines: | 195 |
 | Uncovered lines: | 989 |
 | Coverable lines: | 1184 |
 | Total lines: | 3760 |
-| Line coverage: | 16.4% (195 of 1184) |
+| **Branch coverage:** | 13.2% (71 of 536) |
 | Covered branches: | 71 |
 | Total branches: | 536 |
-| Branch coverage: | 13.2% (71 of 536) |
+| **Method coverage:** | 23.5% (53 of 225) |
 | Covered methods: | 53 |
 | Total methods: | 225 |
-| Method coverage: | 23.5% (53 of 225) |
 
 |**Name**|**Covered**|**Uncovered**|**Coverable**|**Total**|**Line coverage**|**Covered**|**Total**|**Branch coverage**|**Covered**|**Total**|**Method coverage**|
 |:---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
