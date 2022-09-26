@@ -6,6 +6,9 @@
         <RepositoryType>git</RepositoryType>
         <RepositoryUrl>https://github.com/StirlingLabs/BigSpans.Net.git</RepositoryUrl>
         <PackageProjectUrl>https://github.com/StirlingLabs/BigSpans.Net</PackageProjectUrl>
+        <description>
+          64-bit spans, providing full interoperability with .NET Standard's System.Memory's Spans and the standard .NET Runtime's Spans.
+        </description>       
         <GitDefaultBranch>main</GitDefaultBranch>
         <GitCommitsIgnoreMerges>true</GitCommitsIgnoreMerges>
         <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
