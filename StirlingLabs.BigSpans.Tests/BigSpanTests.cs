@@ -264,8 +264,8 @@ public static partial class BigSpanTests
         var actual2 = b.SequenceCompareTo(a);
         var actual3 = a.SequenceCompareTo(a);
         var actual4 = b.SequenceCompareTo(b);
-        Assert.AreEqual(-1, actual1);
-        Assert.AreEqual(1, actual2);
+        Assert.Greater(0, actual1);
+        Assert.Less(0, actual2);
         Assert.AreEqual(0, actual3);
         Assert.AreEqual(0, actual4);
     }
