@@ -249,11 +249,9 @@ public readonly ref struct BigSpan<T>
         _length = BigSpanHelpers.Is64Bit ? (nuint)array.LongLength : (nuint)array.Length;
     }
 
+#if !NET7_0_OR_GREATER
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     internal BigSpan(ByReference<T> byRef)
-#if NET7_0_OR_GREATER
-        => _pointer = ref byRef.Value;
-#else
         => _pointer = byRef;
 #endif
 

@@ -251,6 +251,25 @@ public static partial class BigSpanTests
         Assert.AreEqual(nuint.MaxValue, embeddedMaxSpanCopy.Bytes.Length);
     }
 
+    [Test]
+    public static void CompareBytesTest()
+    {
+        // 0x005056C00001
+        var a = new BigSpan<byte>(new byte[] { 0x00, 0x50, 0x56, 0xC0, 0x00, 0x01 });
+        
+        // 0x50EBF6CF5B92
+        var b = new BigSpan<byte>(new byte[] { 0x50, 0xEB, 0xF6, 0xCF, 0x5B, 0x92 });
+
+        var actual1 = a.SequenceCompareTo(b);
+        var actual2 = b.SequenceCompareTo(a);
+        var actual3 = a.SequenceCompareTo(a);
+        var actual4 = b.SequenceCompareTo(b);
+        Assert.AreEqual(-1, actual1);
+        Assert.AreEqual(1, actual2);
+        Assert.AreEqual(0, actual3);
+        Assert.AreEqual(0, actual4);
+    }
+    
     internal ref struct EmbeddingExample
     {
         public BigSpan<byte> Bytes;

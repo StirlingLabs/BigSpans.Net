@@ -244,11 +244,9 @@ public readonly ref struct ReadOnlyBigSpan<T>
         _length = length;
     }
 
+#if !NET7_0_OR_GREATER
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     internal ReadOnlyBigSpan(ByReference<T> byRef)
-#if NET7_0_OR_GREATER
-        => _pointer = ref byRef.Value;
-#else
         => _pointer = byRef;
 #endif
 
@@ -400,7 +398,11 @@ public readonly ref struct ReadOnlyBigSpan<T>
     [SuppressMessage("Usage", "CA2225", Justification = "Pollution of scope")]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static implicit operator ReadOnlyBigSpan<T>(ReadOnlySpan<T> span)
+#if NET7_0_OR_GREATER
+        => new(ref Unsafe.AsRef(in span.GetPinnableReference()), unchecked((uint)span.Length));
+#else
         => new(new ByReference<T>(span));
+#endif
 
     /// <summary>
     /// Defines an implicit conversion of an array to a <see cref="ReadOnlyBigSpan{T}"/>
