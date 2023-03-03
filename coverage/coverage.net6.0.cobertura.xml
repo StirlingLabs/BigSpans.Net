@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<coverage line-rate="0.16399999999999998" branch-rate="0.1319" version="1.9" timestamp="1677816953" lines-covered="197" lines-valid="1201" branches-covered="71" branches-valid="538">
+<coverage line-rate="0.16399999999999998" branch-rate="0.1319" version="1.9" timestamp="1677817121" lines-covered="197" lines-valid="1201" branches-covered="71" branches-valid="538">
   <sources />
   <packages>
     <package name="StirlingLabs.BigSpans" line-rate="0.16399999999999998" branch-rate="0.1319" complexity="665">
