@@ -1,16 +1,16 @@
 # Summary
 |||
 |:---|:---|
-| Generated on: | 03/03/2023 - 03:29:34 |
-| Coverage date: | 03/03/2023 - 03:29:34 |
+| Generated on: | 03/03/2023 - 04:15:56 |
+| Coverage date: | 03/03/2023 - 04:15:55 |
 | Parser: | Cobertura |
 | Assemblies: | 2 |
 | Classes: | 15 |
 | Files: | 17 |
-| **Line coverage:** | 16.2% (194 of 1197) |
-| Covered lines: | 194 |
-| Uncovered lines: | 1003 |
-| Coverable lines: | 1197 |
+| **Line coverage:** | 16.3% (195 of 1195) |
+| Covered lines: | 195 |
+| Uncovered lines: | 1000 |
+| Coverable lines: | 1195 |
 | Total lines: | 3927 |
 | **Branch coverage:** | 13.1% (71 of 538) |
 | Covered branches: | 71 |
@@ -19,15 +19,15 @@
 
 |**Name**|**Covered**|**Uncovered**|**Coverable**|**Total**|**Line coverage**|**Covered**|**Total**|**Branch coverage**|
 |:---|---:|---:|---:|---:|---:|---:|---:|---:|
-|**StirlingLabs.BigSpans**|**194**|**1003**|**1197**|**5991**|**16.2%**|**71**|**538**|**13.1%**|
-|StirlingLabs.Utilities.BigSpan|0|41|41|1017|0%|0|14|0%|
-|StirlingLabs.Utilities.BigSpan`1|112|98|210|1017|53.3%|51|116|43.9%|
+|**StirlingLabs.BigSpans**|**195**|**1000**|**1195**|**5991**|**16.3%**|**71**|**538**|**13.1%**|
+|StirlingLabs.Utilities.BigSpan|0|41|41|1015|0%|0|14|0%|
+|StirlingLabs.Utilities.BigSpan`1|112|97|209|1015|53.5%|51|116|43.9%|
 |StirlingLabs.Utilities.BigSpanDebugView`1|0|9|9|36|0%|0|2|0%|
 |StirlingLabs.Utilities.BigSpanEnumerator`1|0|9|9|47|0%|0|2|0%|
-|StirlingLabs.Utilities.BigSpanExtensions|26|129|155|520|16.7%|9|86|10.4%|
+|StirlingLabs.Utilities.BigSpanExtensions|27|128|155|520|17.4%|9|86|10.4%|
 |StirlingLabs.Utilities.BigSpanHelpers|16|398|414|910|3.8%|5|172|2.9%|
-|StirlingLabs.Utilities.ReadOnlyBigSpan|0|12|12|852|0%|0|8|0%|
-|StirlingLabs.Utilities.ReadOnlyBigSpan`1|0|181|181|852|0%|0|102|0%|
+|StirlingLabs.Utilities.ReadOnlyBigSpan|0|12|12|854|0%|0|8|0%|
+|StirlingLabs.Utilities.ReadOnlyBigSpan`1|0|180|180|854|0%|0|102|0%|
 |StirlingLabs.Utilities.ReadOnlyBigSpanEnumerator`1|0|9|9|47|0%|0|2|0%|
 |StirlingLabs.Utilities.StreamExtensions|0|14|14|32|0%|0|6|0%|
 |StirlingLabs.Utilities.UnmanagedMemory|17|30|47|123|36.1%|3|10|30%|
