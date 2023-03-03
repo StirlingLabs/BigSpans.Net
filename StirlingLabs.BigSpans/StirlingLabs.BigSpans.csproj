@@ -1,11 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFrameworks>net6.0;net5.0;netstandard2.1;netstandard2.0</TargetFrameworks>
+        <TargetFrameworks>net6.0;net7.0;netstandard2.0;netstandard2.1</TargetFrameworks>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <PackageOutputPath>../artifacts</PackageOutputPath>
-        <LangVersion>10</LangVersion>
+        <LangVersion>11</LangVersion>
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
@@ -17,7 +17,7 @@
         <PackageReference Include="Fody" Version="6.6.4" PrivateAssets="all" />
         <PackageReference Include="InlineIL.Fody" Version="1.7.4" PrivateAssets="all" />
         <PackageReference Include="JetBrains.Annotations" Version="2022.3.1" PrivateAssets="all" />
-        <PackageReference Include="StirlingLabs.Utilities.Magic" Version="22.10.0" />
+        <PackageReference Include="StirlingLabs.Utilities.Magic" Version="23.3.1" />
         <PackageReference Update="Microsoft.Build.Tasks.Git" Version="1.1.1" />
         <PackageReference Update="Microsoft.SourceLink.Common" Version="1.1.1" />
         <PackageReference Update="Microsoft.SourceLink.GitHub" Version="1.1.1" />

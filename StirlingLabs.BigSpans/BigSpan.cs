@@ -182,12 +182,20 @@ public static class BigSpan
 public readonly ref struct BigSpan<T>
 {
     /// <summary>A byref or a native ptr.</summary>
+#if NET7_0_OR_GREATER
+    internal readonly ref T _pointer;
+#else
     internal readonly ByReference<T> _pointer;
+#endif
 
     /// <summary>The number of elements this Span contains.</summary>
     /// <remarks>Due to _pointer being a hack, this must written to immediately after.</remarks>
     // ReSharper disable once InconsistentNaming // when the hack is no longer needed, move back to a field
+#if NET7_0_OR_GREATER
+    internal readonly nuint _length;
+#else
     internal readonly ref nuint _length => ref _pointer.Length;
+#endif
 
     /// <summary>
     /// Creates a new span over the entirety of the target array.
@@ -209,6 +217,8 @@ public readonly ref struct BigSpan<T>
 
 #if NETSTANDARD
         _pointer = new(ref array[0]);
+#elif NET7_0_OR_GREATER
+        _pointer = ref MemoryMarshal.GetArrayDataReference(array);
 #else
         _pointer = new(ref MemoryMarshal.GetArrayDataReference(array));
 #endif
@@ -231,6 +241,8 @@ public readonly ref struct BigSpan<T>
 
 #if NETSTANDARD
         _pointer = new(ref array[0]);
+#elif NET7_0_OR_GREATER
+        _pointer = ref MemoryMarshal.GetArrayDataReference(array);
 #else
         _pointer = new(ref MemoryMarshal.GetArrayDataReference(array));
 #endif
@@ -239,7 +251,11 @@ public readonly ref struct BigSpan<T>
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     internal BigSpan(ByReference<T> byRef)
+#if NET7_0_OR_GREATER
+        => _pointer = ref byRef.Value;
+#else
         => _pointer = byRef;
+#endif
 
     /// <summary>
     /// Creates a new span over the portion of the target array beginning
@@ -278,6 +294,9 @@ public readonly ref struct BigSpan<T>
 #if NETSTANDARD
         _pointer = new(ref Unsafe.Add(ref array[0],
             (nint)(uint)start /* force zero-extension */));
+#elif NET7_0_OR_GREATER
+        _pointer = ref Unsafe.Add(ref MemoryMarshal.GetArrayDataReference(array),
+            (nint)(uint)start /* force zero-extension */);
 #else
         _pointer = new(ref Unsafe.Add(ref MemoryMarshal.GetArrayDataReference(array),
             (nint)(uint)start /* force zero-extension */));
@@ -307,8 +326,11 @@ public readonly ref struct BigSpan<T>
 
         if (length < 0)
             throw new ArgumentOutOfRangeException(nameof(length));
-
+#if NET7_0_OR_GREATER
+        _pointer = ref Unsafe.AsRef<T>(pointer);
+#else
         _pointer = new(ref Unsafe.As<byte, T>(ref *(byte*)pointer));
+#endif
         _length = length;
     }
 
@@ -318,7 +340,11 @@ public readonly ref struct BigSpan<T>
     {
         Debug.Assert(length >= 0);
 
+#if NET7_0_OR_GREATER
+        _pointer = ref ptr;
+#else
         _pointer = new(ref ptr);
+#endif
         _length = length;
     }
 
@@ -341,7 +367,11 @@ public readonly ref struct BigSpan<T>
             if (index >= _length)
                 throw new IndexOutOfRangeException();
 
+#if NET7_0_OR_GREATER
+            return ref Unsafe.Add(ref _pointer, (nint)index);
+#else
             return ref Unsafe.Add(ref _pointer.Value, (nint)index);
+#endif
         }
     }
 
@@ -484,7 +514,12 @@ public readonly ref struct BigSpan<T>
         // Ensure that the native code has just one forward branch that is predicted-not-taken.
         // ReSharper disable once SuggestVarOrType_SimpleTypes
         ref T ret = ref Unsafe.NullRef<T>();
-        if (_length != 0) ret = ref _pointer.Value;
+        if (_length != 0)
+#if NET7_0_OR_GREATER
+            ret = ref _pointer;
+#else
+            ret = ref _pointer.Value;
+#endif
         return ref ret;
     }
 
@@ -498,12 +533,21 @@ public readonly ref struct BigSpan<T>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public unsafe void Clear()
     {
+#if NET7_0_OR_GREATER
+        if (BigSpanHelpers.IsReferenceOrContainsReferences<T>())
+            BigSpanHelpers.ClearWithReferences(ref Unsafe.As<T, nint>(ref _pointer),
+                (uint)_length * (nuint)(Unsafe.SizeOf<T>() / sizeof(nuint)));
+        else
+            BigSpanHelpers.ClearWithoutReferences(ref Unsafe.As<T, byte>(ref _pointer),
+                (uint)_length * (nuint)Unsafe.SizeOf<T>());
+#else
         if (BigSpanHelpers.IsReferenceOrContainsReferences<T>())
             BigSpanHelpers.ClearWithReferences(ref Unsafe.As<T, nint>(ref _pointer.Value),
                 (uint)_length * (nuint)(Unsafe.SizeOf<T>() / sizeof(nuint)));
         else
             BigSpanHelpers.ClearWithoutReferences(ref Unsafe.As<T, byte>(ref _pointer.Value),
                 (uint)_length * (nuint)Unsafe.SizeOf<T>());
+#endif
     }
 
     /// <summary>
@@ -521,12 +565,21 @@ public readonly ref struct BigSpan<T>
                 // The runtime eventually calls memset, which can efficiently support large buffers.
                 // We don't need to check IsReferenceOrContainsReferences because no references
                 // can ever be stored in types this small.
+#if NET7_0_OR_GREATER
+                Unsafe.InitBlockUnaligned(ref Unsafe.As<T, byte>(ref _pointer), Unsafe.As<T, byte>(ref value),
+                    (uint)_length);
+#else
                 Unsafe.InitBlockUnaligned(ref Unsafe.As<T, byte>(ref _pointer.Value), Unsafe.As<T, byte>(ref value),
                     (uint)_length);
+#endif
         }
         else
             // Call our optimized workhorse method for all other types.
+#if NET7_0_OR_GREATER
+            BigSpanHelpers.Fill(ref _pointer, (uint)_length, value);
+#else
             BigSpanHelpers.Fill(ref _pointer.Value, (uint)_length, value);
+#endif
     }
 
     /// <summary>
@@ -621,7 +674,11 @@ public readonly ref struct BigSpan<T>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool operator ==(BigSpan<T> left, BigSpan<T> right) =>
         left._length == right._length &&
+#if NET7_0_OR_GREATER
+        Unsafe.AreSame(ref left._pointer, ref right._pointer);
+#else
         Unsafe.AreSame(ref left._pointer.Value, ref right._pointer.Value);
+#endif
 
     /// <summary>
     /// Defines an implicit conversion of a <see cref="Span{T}"/> to a <see cref="BigSpan{T}"/>
@@ -629,7 +686,11 @@ public readonly ref struct BigSpan<T>
     [SuppressMessage("Usage", "CA2225", Justification = "Pollution of scope")]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static implicit operator BigSpan<T>(Span<T> span)
+#if NET7_0_OR_GREATER
+        => new(ref span.GetPinnableReference(), unchecked((uint)span.Length));
+#else
         => new(new ByReference<T>(span));
+#endif
 
     /// <summary>
     /// Defines an explicit conversion of a <see cref="BigSpan{T}"/> to a <see cref="ReadOnlySpan{T}"/>
@@ -645,7 +706,11 @@ public readonly ref struct BigSpan<T>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static explicit operator ReadOnlySpan<T>(BigSpan<T> bigSpan) =>
         bigSpan._length <= int.MaxValue
+#if NET7_0_OR_GREATER
+            ? MemoryMarshal.CreateReadOnlySpan(ref bigSpan._pointer, (int)bigSpan._length)
+#else
             ? MemoryMarshal.CreateReadOnlySpan(ref bigSpan._pointer.Value, (int)bigSpan._length)
+#endif
             : throw new NotSupportedException(
                 $"Not possible to create ReadOnlySpans longer than {int.MaxValue} (maximum 32-bit integer value)");
 #endif
@@ -664,7 +729,11 @@ public readonly ref struct BigSpan<T>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static explicit operator Span<T>(BigSpan<T> bigSpan) =>
         bigSpan._length <= int.MaxValue
+#if NET7_0_OR_GREATER
+            ? MemoryMarshal.CreateSpan(ref bigSpan._pointer, (int)bigSpan._length)
+#else
             ? MemoryMarshal.CreateSpan(ref bigSpan._pointer.Value, (int)bigSpan._length)
+#endif
             : throw new NotSupportedException(
                 $"Not possible to create ReadOnlySpans longer than {int.MaxValue} (maximum 32-bit integer value)");
 #endif
@@ -696,7 +765,11 @@ public readonly ref struct BigSpan<T>
     public override string ToString()
     {
         if (Type<T>.Is<char>() && _length <= int.MaxValue)
+#if NET7_0_OR_GREATER
+            return new(MemoryMarshal.CreateReadOnlySpan(ref Unsafe.As<T, char>(ref _pointer), (int)_length));
+#else
             return new(MemoryMarshal.CreateReadOnlySpan(ref Unsafe.As<T, char>(ref _pointer.Value), (int)_length));
+#endif
         return $"BigSpan<{typeof(T).Name}>[{_length}]";
     }
 #endif
@@ -714,7 +787,11 @@ public readonly ref struct BigSpan<T>
         if ((uint)start > (uint)_length)
             throw new ArgumentOutOfRangeException(nameof(start));
 
+#if NET7_0_OR_GREATER
+        return new(ref Unsafe.Add(ref _pointer, (nint)(uint)start /* force zero-extension */), _length - start);
+#else
         return new(ref Unsafe.Add(ref _pointer.Value, (nint)(uint)start /* force zero-extension */), _length - start);
+#endif
     }
 
     /// <summary>
@@ -737,7 +814,11 @@ public readonly ref struct BigSpan<T>
         if (start + length > _length)
             throw new ArgumentOutOfRangeException(nameof(length));
 
+#if NET7_0_OR_GREATER
+        return new(ref Unsafe.Add(ref _pointer, (nint)(uint)start /* force zero-extension */), length);
+#else
         return new(ref Unsafe.Add(ref _pointer.Value, (nint)(uint)start /* force zero-extension */), length);
+#endif
     }
 
     /// <summary>
@@ -844,11 +925,19 @@ public readonly ref struct BigSpan<T>
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public BigSpan<byte> AsBytes()
+#if NET7_0_OR_GREATER
+        => new(ref Unsafe.As<T, byte>(ref _pointer), _length * (nuint)Unsafe.SizeOf<T>());
+#else
         => new(ref Unsafe.As<T, byte>(ref _pointer.Value), _length * (nuint)Unsafe.SizeOf<T>());
+#endif
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public BigSpan<T2> CastAs<T2>()
+#if NET7_0_OR_GREATER
+        => new(ref Unsafe.As<T, T2>(ref _pointer), _length * (nuint)Unsafe.SizeOf<T>() / (nuint)Unsafe.SizeOf<T2>());
+#else
         => new(ref Unsafe.As<T, T2>(ref _pointer.Value), _length * (nuint)Unsafe.SizeOf<T>() / (nuint)Unsafe.SizeOf<T2>());
+#endif
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     internal unsafe int CompareMemoryInternal(BigSpan<T> other, nuint length)

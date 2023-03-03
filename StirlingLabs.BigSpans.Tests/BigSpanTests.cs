@@ -19,7 +19,11 @@ public static partial class BigSpanTests
     {
         if (BigSpanHelpers.Is64Bit)
         {
+#if NET7_0_OR_GREATER
+            Assert.AreEqual(8, BigSpanHelpers.GetSizeOfByReference<byte>());
+#else
             Assert.AreEqual(16, BigSpanHelpers.GetSizeOfByReference<byte>());
+#endif
 
             Assert.AreEqual(16, BigSpanHelpers.GetSizeOfBigSpan<byte>());
             Assert.AreEqual(16, BigSpanHelpers.GetSizeOfReadOnlyBigSpan<byte>());
@@ -112,7 +116,7 @@ public static partial class BigSpanTests
             {
                 Unsafe.AreSame(ref sObj[0], ref bsObj[0u]);
 
-                if (wrObj.TryGetTarget(out var expected))
+                if (wrObj.IsAlive)
                 {
                     // not yet collected
                 }
@@ -146,42 +150,46 @@ public static partial class BigSpanTests
 
         try
         {
-            //var wrCtrl = CreateWeakRefObject();
-            var bsObj = CreateObjectRefs(out var wrObj, out var sObj);
-            //var sObj = CreateObjectRefs(out var wrObj);
+            Weak<object> wrObj;
+            bool collected;
 
-            GarbageCollectedNotifier.GarbageCollected += OnGc;
+            [MethodImpl(MethodImplOptions.NoInlining)]
+            Weak<object> ActiveStackScope() {
+                //var wrCtrl = CreateWeakRefObject();
+                var bsObj = CreateObjectRefs(out wrObj, out var sObj);
+                //var sObj = CreateObjectRefs(out var wrObj);
 
-            var collected = false;
+                GarbageCollectedNotifier.GarbageCollected += OnGc;
 
-            for (var i = 0; i < 10000; ++i)
-            {
-                Unsafe.AreSame(ref sObj[0], ref bsObj[0u]);
+                collected = false;
 
-                if (wrObj.TryGetTarget(out var expected))
-                {
-                    // not yet collected
+                for (var i = 0; i < 10000; ++i) {
+                    Unsafe.AreSame(ref sObj[0], ref bsObj[0u]);
+
+                    if (!wrObj.IsAlive)
+                        collected = true;
+                    // else not yet collected
+
+                    GC.Collect(2, GCCollectionMode.Forced, true, true);
+
+                    if (collected) return wrObj;
                 }
-                else
-                {
-                    collected = true;
-                }
-                GC.Collect(0, GCCollectionMode.Forced, true, true);
 
-                if (collected) return;
+                Assert.IsFalse(collected);
+
+                sObj = null;
+                bsObj = default;
+                return wrObj;
             }
 
-            Assert.IsFalse(collected);
-
-            sObj = null;
-            bsObj = default;
+            wrObj = ActiveStackScope();
 
             for (var i = 0; i < 10000; ++i)
             {
-                if (!wrObj.TryGetTarget(out var expected))
+                if (!wrObj.IsAlive)
                     collected = true;
 
-                GC.Collect(0, GCCollectionMode.Forced, true, true);
+                GC.Collect(2, GCCollectionMode.Forced, true, true);
 
                 if (collected) return;
             }
@@ -248,22 +256,15 @@ public static partial class BigSpanTests
         public BigSpan<byte> Bytes;
     }
 
-    private static BigSpan<object> CreateObjectRefs(out WeakReference<object> wr, out Span<object> sp)
+    private static BigSpan<object> CreateObjectRefs(out Weak<object> wr, out Span<object> sp)
     {
         var o = new object();
         wr = new(o);
         sp = MemoryMarshal.CreateSpan(ref o, 1)!;
-        return new(ref o!, 1);
+        return new(ref sp.GetPinnableReference(), 1);
     }
 
-    private static Span<object> CreateObjectRefs(out WeakReference<object> wr)
-    {
-        var o = new object();
-        wr = new(o);
-        return MemoryMarshal.CreateSpan(ref o, 1)!;
-    }
-
-    private static WeakReference<object> CreateWeakRefObject()
+    private static Weak<object> CreateWeakRefObject()
         => new(new());
 
 #if DEBUG
@@ -284,7 +285,7 @@ public static partial class BigSpanTests
 
             var objBigSpan = new BigSpan<object>(objects);
 
-            GC.Collect(0, GCCollectionMode.Forced, true, true);
+            GC.Collect(2, GCCollectionMode.Forced, true, true);
             objBigSpan.AsPinnedEnumerable(e => {
                     for (var i = 0; i < 10; ++i)
                         GC.Collect(0, GCCollectionMode.Forced, true, true);
@@ -326,7 +327,7 @@ public static partial class BigSpanTests
 
             var objBigSpan = CreateFiveObjects();
 
-            GC.Collect(0, GCCollectionMode.Forced, true, true);
+            GC.Collect(2, GCCollectionMode.Forced, true, true);
             objBigSpan.AsPinnedEnumerable(e => {
                     for (var i = 0; i < 10; ++i)
                         GC.Collect(0, GCCollectionMode.Forced, true, true);

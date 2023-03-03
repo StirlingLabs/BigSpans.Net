@@ -21,13 +21,21 @@ public static class BigSpanExtensions
     /// would have been stored. Such a reference may or may not be null. It can be used for pinning but must never be dereferenced.
     /// </summary>
     public static ref T GetReference<T>(this BigSpan<T> span)
+#if NET7_0_OR_GREATER
+        => ref span._pointer;
+#else
         => ref span._pointer.Value;
+#endif
     /// <summary>
     /// Returns a reference to the 0th element of the ReadOnlyBigSpan. If the ReadOnlyBigSpan is empty, returns a reference to the location where the 0th element
     /// would have been stored. Such a reference may or may not be null. It can be used for pinning but must never be dereferenced.
     /// </summary>
     public static ref T GetReference<T>(this ReadOnlyBigSpan<T> span)
+#if NET7_0_OR_GREATER
+        => ref span._pointer;
+#else
         => ref span._pointer.Value;
+#endif
 
     public static void CopyTo<T>(this T[] srcArray, BigSpan<T> dst)
         => new BigSpan<T>(srcArray, false).CopyTo(dst);
@@ -241,42 +249,42 @@ public static class BigSpanExtensions
         => a.CompareMemory(b) == 0;
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static int SequenceCompare<T>(this BigSpan<T> a, BigSpan<T> b)
+    public static int SequenceCompareTo<T>(this BigSpan<T> a, BigSpan<T> b)
         where T : unmanaged
         => a.CompareMemory(b);
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static int SequenceCompare<T>(this ReadOnlyBigSpan<T> a, BigSpan<T> b)
+    public static int SequenceCompareTo<T>(this ReadOnlyBigSpan<T> a, BigSpan<T> b)
         where T : unmanaged
         => a.CompareMemory(b);
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static int SequenceCompare<T>(this BigSpan<T> a, ReadOnlyBigSpan<T> b)
+    public static int SequenceCompareTo<T>(this BigSpan<T> a, ReadOnlyBigSpan<T> b)
         where T : unmanaged
         => a.CompareMemory(b);
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static int SequenceCompare<T>(this ReadOnlyBigSpan<T> a, ReadOnlyBigSpan<T> b)
+    public static int SequenceCompareTo<T>(this ReadOnlyBigSpan<T> a, ReadOnlyBigSpan<T> b)
         where T : unmanaged
         => a.CompareMemory(b);
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static int SequenceCompare<T>(this Span<T> a, BigSpan<T> b)
+    public static int SequenceCompareTo<T>(this Span<T> a, BigSpan<T> b)
         where T : unmanaged
         => -b.CompareMemory(a);
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static int SequenceCompare<T>(this ReadOnlySpan<T> a, BigSpan<T> b)
+    public static int SequenceCompareTo<T>(this ReadOnlySpan<T> a, BigSpan<T> b)
         where T : unmanaged
         => -b.CompareMemory(a);
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static int SequenceCompare<T>(this BigSpan<T> a, ReadOnlySpan<T> b)
+    public static int SequenceCompareTo<T>(this BigSpan<T> a, ReadOnlySpan<T> b)
         where T : unmanaged
         => a.CompareMemory(b);
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static int SequenceCompare<T>(this ReadOnlyBigSpan<T> a, ReadOnlySpan<T> b)
+    public static int SequenceCompareTo<T>(this ReadOnlyBigSpan<T> a, ReadOnlySpan<T> b)
         where T : unmanaged
         => a.CompareMemory(b);
 
